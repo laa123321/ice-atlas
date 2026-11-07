@@ -1,0 +1,45 @@
+/* 仅选手目录页：保留详情页及其他栏目原样。 */
+body.atlas-directory-page{background:#f7f9fb}
+.atlas-directory-page #section-view{padding-top:20px}
+.atlas-directory-page .breadcrumb{margin-bottom:18px;color:#617b8e}
+.atlas-directory-page #section-eyebrow,.atlas-directory-page .section-number{display:none}
+.atlas-directory-page .page-title-row{padding-bottom:0;border:0}
+.atlas-directory-page #section-title{color:#20394f;font-size:34px;line-height:1.45;letter-spacing:0}
+.atlas-directory-page .season-content{padding-top:8px}
+.atlas-directory-page .directory-description{margin:0 0 21px;color:#617b8e;font-size:14px;line-height:1.8}
+.atlas-directory-page .directory-toolbar{display:flex;align-items:center;gap:25px;flex-wrap:wrap;border-block:1px solid #d8e3eb;padding:13px 0;margin-bottom:24px}
+.atlas-directory-page .athlete-tabs{margin:0;border:0;gap:4px;flex-shrink:0}
+.atlas-directory-page .athlete-tabs a{padding:8px 15px;font-size:15px;line-height:1.5;border:1px solid transparent;border-radius:4px;color:#617b8e}
+.atlas-directory-page .athlete-tabs a span{display:none}
+.atlas-directory-page .athlete-tabs a[aria-selected="true"]{background:#e7f0f6;border-color:#d1e3ee;color:#2c6e97}
+.atlas-directory-page .athlete-controls{display:flex;align-items:center;gap:18px;flex:1;margin:0;flex-wrap:wrap}
+.atlas-directory-page .search-label{display:flex;align-items:center;gap:10px;flex:1;min-width:220px;color:#617b8e;font-size:13px}
+.atlas-directory-page .search-label input{min-width:0;flex:1;width:100%;padding:10px 12px;border:1px solid #d8e3eb;background:#fff;border-radius:4px;font-size:14px;color:#20394f}
+.atlas-directory-page .select-label{font-size:13px;color:#617b8e;gap:10px}
+.atlas-directory-page .select-label select{padding:10px 28px 10px 12px;border-color:#d8e3eb;border-radius:4px;font-size:14px;background-color:#fff}
+.atlas-directory-page #athlete-count{font-size:13px;color:#617b8e;margin-left:auto;white-space:nowrap}
+.atlas-directory-page .athlete-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.atlas-directory-page .athlete-card{display:block;min-width:0;padding:0 0 18px;border:1px solid #d8e3eb;border-radius:6px;overflow:hidden;background:#fff;transition:transform .18s ease,border-color .18s ease}
+.atlas-directory-page .athlete-card:hover{transform:translateY(-3px);border-color:#4c91b9}
+.atlas-directory-page .athlete-card-photo{margin:0;aspect-ratio:4/3;background:#edf2f5;overflow:hidden;border-bottom:1px solid #e5ecf1}
+.atlas-directory-page .athlete-card-photo img{width:100%;height:100%;object-fit:contain;object-position:center top;padding:12px 14px 0;transform:none}
+.atlas-directory-page .athlete-card h3{margin:16px 18px 7px;font-size:17px;line-height:1.5;font-weight:600;color:#20394f;overflow-wrap:anywhere}
+.atlas-directory-page .athlete-card>p{margin:0 18px;font-size:13px;line-height:1.8;color:#617b8e}
+.atlas-directory-page .athlete-card-country{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.atlas-directory-page .athlete-card-country span{font-size:11px;letter-spacing:.8px;color:#617b8e}
+.atlas-directory-page .athlete-card .athlete-card-group{margin-top:3px;font-size:12px}
+.atlas-directory-page .empty-search{grid-column:1/-1}
+@media(max-width:1100px){.atlas-directory-page .athlete-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.atlas-directory-page .directory-toolbar{gap:12px 20px}.atlas-directory-page .athlete-controls{min-width:100%}.atlas-directory-page .athlete-card-photo{max-height:290px}}
+@media(max-width:760px){.atlas-directory-page #section-title{font-size:27px}.atlas-directory-page .breadcrumb{margin-bottom:14px;font-size:13px}.atlas-directory-page .directory-description{margin-bottom:16px}.atlas-directory-page .directory-toolbar{margin-bottom:19px}.atlas-directory-page .athlete-controls{gap:12px}.atlas-directory-page .search-label{min-width:100%;font-size:12px}.atlas-directory-page .select-label{font-size:12px}.atlas-directory-page .athlete-grid{gap:14px}.atlas-directory-page .athlete-card h3{font-size:15px;margin:12px 12px 6px}.atlas-directory-page .athlete-card>p{margin-inline:12px;font-size:12px}.atlas-directory-page .athlete-card-photo img{padding:8px 8px 0}.atlas-directory-page .athlete-card{padding-bottom:14px}}
+@media(max-width:380px){.atlas-directory-page .athlete-grid{grid-template-columns:minmax(0,1fr)}.atlas-directory-page .athlete-card-photo{max-height:none}}
+@media(prefers-reduced-motion:reduce){.atlas-directory-page .athlete-card{transition:none}.atlas-directory-page .athlete-card:hover{transform:none}}
+/* 国家下拉框一次约显示 9 项，其余选项在菜单内滚动。保留原生选择与键盘交互。 */
+@supports (appearance:base-select){
+  #athlete-country,#athlete-country::picker(select){appearance:base-select}
+  .atlas-directory-page #athlete-country{min-inline-size:160px;background-image:none;padding:10px 12px;gap:16px}
+  #athlete-country::picker(select){max-block-size:min(298px,50dvh);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 0;border:1px solid #d8e3eb;border-radius:4px;background:#fff;color:#456479;box-shadow:0 5px 16px #20394f14}
+  #athlete-country option{min-block-size:32px;padding:6px 12px;font-family:inherit;line-height:20px;font-size:14px;gap:8px}
+  #athlete-country option:hover,#athlete-country option:focus-visible{background:#e7f0f6;color:#20394f}
+  #athlete-country option:checked{background:#4565bd;color:#fff}
+}
+#athlete-country option::checkmark{display:none}

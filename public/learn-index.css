@@ -1,0 +1,63 @@
+/* 仅科普目录页启用；离开目录时由路由移除 body 类名。 */
+body.learn-index-page { background: #f7f9fb; }
+.learn-index-page #section-view { padding-top: 20px; }
+.learn-index-page .breadcrumb { margin-bottom: 16px; color: #52697c; }
+.learn-index-page #section-eyebrow { margin-bottom: 8px; color: #52697c; }
+.learn-index-page .page-title-row { padding-bottom: 0; border: 0; gap: 20px; align-items: baseline; }
+.learn-index-page #section-title { color: #20394f; font-size: 34px; line-height: 1.45; letter-spacing: 0; }
+.learn-index-page .section-number { color: #52697c; font-size: 13px; white-space: nowrap; }
+.learn-index-page .learn-content { padding-top: 10px; }
+.learn-index-page .learn-index-intro { margin-bottom: 24px; }
+.learn-index-page .learn-index-intro p { display: flex; flex-wrap: wrap; gap: 2px 14px; margin: 0; font-size: 15px; line-height: 1.8; color: #52697c; }
+.learn-index-page .learn-index-intro strong { color: #20394f; font-size: 17px; font-weight: 500; }
+.learn-index-page .learn-directory { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+.learn-index-page .learn-directory-card {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 68px;
+  gap: 18px 22px;
+  align-items: center;
+  min-width: 0;
+  padding: 24px 26px 17px;
+  background: #fff;
+  border: 1px solid #d8e3eb;
+  border-radius: 8px;
+  color: #20394f;
+  transition: transform .18s ease, border-color .18s ease;
+}
+.learn-index-page .learn-directory-card:hover { transform: translateY(-3px); border-color: #4c91b9; }
+.learn-index-page .learn-directory-card:focus-visible { outline: 2px solid #4c91b9; outline-offset: 4px; border-color: #4c91b9; }
+.learn-index-page .directory-number { display: block; color: #52697c; font-size: 12px; line-height: 1.5; letter-spacing: 1.2px; font-variant-numeric: tabular-nums; }
+.learn-index-page .learn-card-title { margin: 9px 0 5px; color: #20394f; font-size: 27px; font-weight: 600; line-height: 1.4; letter-spacing: .5px; }
+.learn-index-page .learn-card-copy p { margin: 0; color: #52697c; font-size: 15px; line-height: 1.8; min-height: 0; }
+.learn-index-page .learn-card-diagram { display: block; width: 68px; height: 68px; color: #4c91b9; }
+.learn-index-page .learn-card-footer { grid-column: 1/-1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 13px; border-top: 1px solid #e8eef3; }
+.learn-index-page .directory-tail { margin: 0; padding: 0; border: 0; color: #52697c; font-size: 13px; line-height: 1.7; letter-spacing: 0; }
+.learn-index-page .learn-card-arrow { color: #4c91b9; font-size: 23px; line-height: 1; }
+.learn-index-page .learn-source-note { margin-top: 22px; color: #52697c; font-size: 13px; line-height: 1.9; }
+.learn-index-page .learn-source-note a { color: #3c7292; text-decoration: underline; text-underline-offset: 3px; }
+.learn-index-page .learn-guide-label { display: block; margin-bottom: 5px; font-size: 11px; letter-spacing: 1.1px; }
+@media(max-width:1100px) {
+  .learn-index-page .learn-directory-card { padding: 21px 22px 16px; grid-template-columns: minmax(0,1fr) 52px; column-gap: 16px; }
+  .learn-index-page .learn-card-diagram { width: 52px; height: 52px; }
+  .learn-index-page .learn-card-title { font-size: 25px; }
+}
+@media(max-width:760px) {
+  .learn-index-page #section-view { padding-top: 17px; }
+  .learn-index-page .breadcrumb { margin-bottom: 14px; font-size: 13px; }
+  .learn-index-page #section-eyebrow { font-size: 11px !important; letter-spacing: 1.1px !important; }
+  .learn-index-page .page-title-row { align-items: flex-start; }
+  .learn-index-page #section-title { font-size: 27px; line-height: 1.5; }
+  .learn-index-page .section-number { display: none; }
+  .learn-index-page .learn-index-intro { margin-bottom: 20px; }
+  .learn-index-page .learn-index-intro p { display: block; font-size: 14px; }
+  .learn-index-page .learn-index-intro strong { display: block; margin-bottom: 3px; font-size: 16px; }
+  .learn-index-page .learn-directory { grid-template-columns: minmax(0,1fr); gap: 14px; }
+  .learn-index-page .learn-directory-card { padding: 20px 20px 16px; gap: 15px 14px; }
+  .learn-index-page .learn-card-title { font-size: 25px; margin-top: 8px; }
+  .learn-index-page .learn-card-copy p { font-size: 15px; }
+  .learn-index-page .directory-number { font-size: 11px; letter-spacing: .8px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .learn-index-page .learn-directory-card { transition: none; }
+  .learn-index-page .learn-directory-card:hover { transform: none; }
+}

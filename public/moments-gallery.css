@@ -1,0 +1,30 @@
+/* 首页冬奥影像画册，不改变 Hero 及其他模块。 */
+.moments{padding-top:42px}
+.moments .section-heading{margin-bottom:24px}
+.moments .section-heading h2{font-size:29px;font-weight:600;color:#203a50;letter-spacing:0}
+.moments .section-heading .eyebrow{margin-bottom:9px}
+.moments .moments-intro{margin:10px 0 0;font-size:15px;line-height:1.8;color:#5b7083}
+.moments .moments-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.moments .moment-photo{aspect-ratio:4/3;border-radius:4px;touch-action:pan-y}
+.moments .moment-photo::after{inset:auto 0 0;height:45px;background:linear-gradient(transparent,rgba(9,21,38,.23))}
+.moments .moment-slide{transition:opacity .3s ease;object-position:center 35%}
+.moments .moment-year{left:14px;top:14px;padding:4px 9px;border:1px solid #ffffffb3;font-size:12px;line-height:1.5;letter-spacing:1px}
+.moments .moment-prev,.moments .moment-next{position:absolute;z-index:4;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:32px;height:36px;border:1px solid #ffffff8c;border-radius:3px;background:#f7fafce8;color:#203a50;font-size:25px;font-weight:400;line-height:1;opacity:0;pointer-events:none;transition:opacity .18s ease}
+.moments .moment-prev{left:10px}.moments .moment-next{right:10px}
+.moments .moment-photo:hover .moment-prev,.moments .moment-photo:hover .moment-next,.moments .moment-photo:focus-within .moment-prev,.moments .moment-photo:focus-within .moment-next{opacity:1;pointer-events:auto}
+.moments .moment-dots{z-index:4;left:14px;bottom:16px;gap:3px;align-items:center}
+.moments .moment-dot{position:relative;display:block;width:22px;height:24px;padding:0;border:0;background:transparent;border-radius:0;pointer-events:auto;cursor:pointer}
+.moments .moment-dot::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:5px;height:5px;border-radius:4px;background:#ffffffad}
+.moments .moment-dot.is-active{width:26px;background:transparent}
+.moments .moment-dot.is-active::after{width:18px;height:4px;background:#fff}
+.moments .moment-open.moment-zoom{inset:auto 12px 12px auto;z-index:5;width:29px;height:29px;background:#16364a55;border:1px solid #ffffffb8;border-radius:50%;color:#fff;font-size:18px;line-height:1;pointer-events:auto;padding:0}
+.moments .moment-open.moment-zoom:hover{background:#fff;color:#203a50}
+.moments figcaption{padding:15px 0 17px;border-bottom:1px solid #d8e3eb}
+.moments .moment-edition{margin:0 0 5px;font-size:11px;line-height:1.7;letter-spacing:1.2px;color:#617b8e}
+.moments .moment-title{margin:0;font-size:18px;font-weight:600;line-height:1.6;letter-spacing:0;color:#203a50}
+@media(max-width:1100px){.moments .moments-grid{gap:18px}.moments .moment-title{font-size:16px}}
+@media(max-width:760px){.moments{padding-top:30px}.moments .moments-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}.moments .section-heading h2{font-size:25px}.moments .moments-intro{font-size:14px}.moments .moment-year{left:10px;top:10px;font-size:11px}.moments .moment-prev,.moments .moment-next{opacity:1;pointer-events:auto;width:26px;height:30px;font-size:21px}.moments .moment-prev{left:6px}.moments .moment-next{right:6px}.moments .moment-dots{left:8px;bottom:8px;gap:0}.moments .moment-open.moment-zoom{right:8px;bottom:9px;width:25px;height:25px}.moments figcaption{padding-top:12px}.moments .moment-title{font-size:16px}.moments .moment-edition{font-size:10px;letter-spacing:.8px}}
+@media(hover:none){.moments .moment-prev,.moments .moment-next{opacity:1;pointer-events:auto}}
+@media(prefers-reduced-motion:reduce){.moments .moment-slide,.moments .moment-prev,.moments .moment-next{transition:none}}
+/* 索契两张竖幅比赛照完整展示，避免轮播时裁掉头部和冰鞋。 */
+.moments .moment-slide[src$="sochi-yuna-free.jpg"],.moments .moment-slide[src$="sochi-3.jpg"]{object-fit:contain;object-position:center;background:#edf2f5}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173b58">
+  <meta name="description" content="冰上图鉴：从基础知识到选手故事，一起认识女子单人花样滑冰。">
+  <title>冰上图鉴 ICE ATLAS · 女子单人花样滑冰</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="content.css">
+  <link rel="stylesheet" href="readability.css">
+  <link rel="stylesheet" href="event-photos.css">
+  <link rel="stylesheet" href="rankings.css">
+  <link rel="stylesheet" href="learn-index.css">
+  <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="events-calendar.css">
+  <link rel="stylesheet" href="athlete-directory.css">
+  <link rel="stylesheet" href="moments-gallery.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="forum.css">
+  <script src="auth.js" defer></script>
+  <script src="learn.js" defer></script>
+  <script src="season.js" defer></script>
+  <script src="rankings.js" defer></script>
+  <script src="forum.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="#/" aria-label="冰上图鉴首页">
+        <svg class="brand-symbol" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M12 30 25 7l-1 17 12-2-10 18 1-13-15 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M5 36c5 7 27 9 38-3M8 41c9 5 25 4 31 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        <span class="brand-name">冰上图鉴<span class="brand-en">ICE ATLAS</span></span>
+      </a>
+      <span class="header-note">女子单人花样滑冰 · 在这里读懂冰上的故事</span>
+      <div class="account-actions"><span class="guest-label"><span></span> 游客模式</span><a class="login-link" href="#/login">登录</a><a class="register-link" href="#/register">注册 <span aria-hidden="true">↗</span></a><div id="signed-in-actions" class="signed-in-actions" hidden><span id="account-avatar" class="account-avatar" aria-hidden="true"></span><span id="account-nickname"></span><button id="logout-button" type="button">退出登录</button></div></div>
+    </div>
+    <nav class="main-nav" aria-label="主导航"><div class="nav-inner container">
+      <a class="nav-home" href="#/" aria-label="首页"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>首页</span></a>
+      <a href="#/basics">花样滑冰基础知识科普</a><a href="#/rankings">世界积分榜排名</a><a href="#/events">本赛季国际赛事</a><a href="#/skaters">各国女单</a><a href="#/forum">论坛 <span class="nav-arrow" aria-hidden="true">↗</span></a>
+    </div></nav>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <div id="home-view">
+      <section class="hero hero-editorial container" aria-labelledby="hero-title">
+        <figure class="hero-photo"><img src="assets/isu-podium.jpg" alt="2026年ISU世界花样滑冰锦标赛女子单人滑三位获奖选手合照" width="1024" height="683" fetchpriority="high"><div class="photo-shade"></div><figcaption><span class="photo-kicker">赛场瞬间</span><a class="photo-source" href="https://www.isu-skating.com/en/news/kaori-sakamoto-bids-golden-farewell-with-fourth-isu-world-title-in-prague/" target="_blank" rel="noopener noreferrer">2026 ISU 世界花样滑冰锦标赛 · 女子颁奖台 <span aria-hidden="true">↗</span></a></figcaption></figure>
+        <div class="hero-portrait-layer"><img src="assets/hero-kim-yuna.webp" alt="金妍儿身穿黄色考斯滕低头、手臂向上伸展" width="1353" height="1163" decoding="async"></div>
+        <svg class="hero-ice-line" viewBox="0 0 1680 350" preserveAspectRatio="none" fill="none" aria-hidden="true" focusable="false"><path d="M-30 160C320 380 440 90 740 145S960 245 1100 165 1450 30 1710 10"/><path d="M-40 320C410 395 760 270 1080 205S1450 105 1720 75"/><path class="hero-ice-faint" d="M-40 300C300 410 580 255 880 210S1350 175 1720 125"/></svg>
+        <div class="hero-copy"><p class="eyebrow">INSIDE FIGURE SKATING</p><h1 id="hero-title"><span>冰上的几分钟，</span><span>值得<em>看懂更多</em>。</span></h1><p class="hero-description"><span>从一次跳跃的起落，到一场比赛的胜负。</span><span>这里记录女子单人花滑的技术、赛事和那些值得回看的瞬间。</span></p><a class="explore-link" href="#/basics">从基础知识开始 <span aria-hidden="true">↗</span></a></div>
+      </section>
+
+      <section class="moments container" aria-labelledby="moments-title">
+        <div class="section-heading"><div><p class="eyebrow">MOMENTS ON ICE</p><h2 id="moments-title">冰上的奥运瞬间</h2><p class="moments-intro">从索契到米兰，重温女子单人滑的赛场记忆。</p></div></div>
+        <div id="moments-grid" class="moments-grid"></div>
+      </section>
+    </div>
+
+    <section id="section-view" class="container section-page" hidden aria-labelledby="section-title"><div class="breadcrumb"><a href="#/">首页</a><span>/</span><span id="breadcrumb-label"></span></div><p id="section-eyebrow" class="eyebrow"></p><div class="page-title-row"><h1 id="section-title"></h1><span class="section-number" aria-hidden="true"></span></div><div id="forum-notice" class="forum-notice" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2" stroke="currentColor" stroke-width="1.5"/></svg><p>你正在以游客身份浏览，登录后可发帖和回复。</p><a href="#/login?next=forum">登录 / 注册 <span aria-hidden="true">↗</span></a></div><div class="blank-canvas" aria-label="栏目内容预留区域"><span class="empty-mark" aria-hidden="true">✧</span><p>内容即将与您见面</p></div></section>
+
+    <section id="auth-view" class="auth-page container" hidden aria-labelledby="auth-title"><a class="back-link" href="#/">← 返回首页</a><div class="auth-layout"><div class="auth-intro"><p class="eyebrow">A LITTLE CLOSER TO THE ICE</p><h1>每一份热爱，<br>都在这里相遇。</h1><p>认识花滑，分享心动。<br>和同样热爱冰场的人一起交流。</p><span class="auth-spark" aria-hidden="true">✧</span></div><div class="auth-card"><div class="auth-tabs"><a href="#/login" id="login-tab">登录</a><a href="#/register" id="register-tab">注册</a></div><h2 id="auth-title">欢迎回到冰上图鉴</h2><p id="auth-subtitle" class="auth-subtitle">登录后，参与冰上的每一次讨论。</p><form id="auth-form"><div id="username-field" hidden><label for="username">昵称</label><input id="username" name="username" autocomplete="nickname" placeholder="给自己取一个昵称" minlength="2" maxlength="20"></div><label for="email">邮箱</label><input id="email" name="email" type="email" autocomplete="email" placeholder="请输入邮箱地址" required><label for="password">密码</label><div class="password-field"><input id="password" name="password" type="password" autocomplete="current-password" placeholder="请输入 8–128 位密码" required minlength="8" maxlength="128"><button id="toggle-password" type="button" aria-label="显示密码">显示</button></div><div id="confirm-field" hidden><label for="confirm-password">确认密码</label><input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" placeholder="再次输入密码" minlength="8" maxlength="128"></div><button id="auth-submit" class="primary-button" type="submit">登录 <span aria-hidden="true">↗</span></button><p id="auth-feedback" class="form-feedback" role="status"></p><p class="prototype-note">密码为 8–128 位。注册后自动登录，即可参与论坛讨论。</p></form></div></div></section>
+  </main>
+
+  <div id="account-notice" class="account-notice" role="status" hidden></div>
+  <footer class="site-footer"><div class="container footer-inner"><div class="footer-main"><div class="footer-identity"><a class="footer-brand" href="#/">冰上图鉴 <span>ICE ATLAS</span></a><p class="footer-description">女子单人花样滑冰 · 独立科普网站</p></div><nav class="footer-links" aria-label="页脚导航"><a href="#/sources">图片来源 <span aria-hidden="true">↗</span></a></nav></div><div class="footer-bottom"><span>© 2026 ICE ATLAS</span><span>独立制作，非 ISU 官方网站</span></div></div></footer>
+  <dialog id="photo-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="关闭图片" type="button">×</button><div class="dialog-image-wrap"><img id="dialog-image" src="assets/beijing-1.jpg" alt=""><button class="dialog-prev" type="button" aria-label="上一张图片">←</button><button class="dialog-next" type="button" aria-label="下一张图片">→</button></div><div class="dialog-info"><div><p class="eyebrow" id="dialog-edition"></p><h2 id="dialog-title"></h2></div><a id="dialog-source" href="https://www.isu-skating.com/" target="_blank" rel="noopener noreferrer">查看原始来源 ↗</a><span id="dialog-count"></span></div></dialog>
+</body>
+</html>

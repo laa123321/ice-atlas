@@ -1,0 +1,27 @@
+{
+  "name": "ice-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "女子单人花样滑冰科普与交流平台 · 页面设计",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check src/app.js && node --check src/season.js && node --check src/isu-fetch.js && node --check src/local-mongo.js && node --check public/auth.js && node --check public/app.js && node --check public/learn.js && node --check public/season.js && node --check src/rankings.js && node --check public/rankings.js && node --check src/forum.js && node --check public/forum.js",
+    "test": "node --test tests/*.test.js",
+    "diagrams": "node scripts/create-learning-diagrams.js",
+    "sync": "node scripts/sync-season.js",
+    "sync:rankings": "node scripts/sync-rankings.js"
+  },
+  "engines": {
+    "node": ">=22.19"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "connect-mongo": "^6.0.0",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.3",
+    "express-session": "^1.19.0",
+    "mongodb": "^7.8.0",
+    "undici": "^8.12.3"
+  }
+}

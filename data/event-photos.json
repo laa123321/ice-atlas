@@ -1,0 +1,65 @@
+{
+  "jgpchn2026": {
+    "photo": "assets/events/jgpchn2026.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/news/junior-grand-prix-xian-2026-newcomers-shine/",
+    "photoCredit": "© ISU",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-04"
+  },
+  "jgptha2026": {
+    "photo": "assets/events/jgptha2026.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/news/skaters-punch-ticket-to-the-final-at-isu-figure-skating-junior-grand-prix-bangkok/",
+    "photoCredit": "© ISU",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-04"
+  },
+  "jgpgeo2026": {
+    "photo": "assets/events/jgpgeo2026.jpg",
+    "photoSource": "https://www.sina.cn/news/detail/5347592267629900.html",
+    "photoCredit": "Jurij Kodrun / ISU / Getty Images（图集来源：新浪）",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-05"
+  },
+  "gpfra2026": {
+    "photo": "assets/events/gpfra2026.jpg",
+    "photoSource": "https://www.goldenskate.com/ami-nakai-rallies-to-gold-at-2026-grand-prix-de-france/",
+    "photoCredit": "Sylva Křenková / Golden Skate",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-05"
+  },
+  "gpcan2026": {
+    "photo": "assets/events/gpcan2026.jpg",
+    "photoSource": "https://www.goldenskate.com/mao-shimada-claims-first-grand-prix-title-in-canada/",
+    "photoCredit": "Yuan Tian / Golden Skate",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-05"
+  },
+  "jgplat2026": {
+    "photo": "assets/events/jgplat2026.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/news/history-makers-shine-at-isu-junior-grand-prix-riga-2026/",
+    "photoCredit": "ISU 官方赛后报道",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-05"
+  },
+  "jgpslo2026": {
+    "photo": "assets/events/jgpslo2026.jpg",
+    "photoSource": "https://www.swissiceskating.ch/fr/une-medaille-et-de-belles-performances-au-jgp-de-ljubljana/",
+    "photoCredit": "Swiss Ice Skating",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-05"
+  },
+  "jgppol2026": {
+    "photo": "assets/events/jgppol2026.jpg",
+    "photoSource": "https://x.com/figureskatinghq/status/2108645408142451013",
+    "photoCredit": "Figure Skating Stuff / 颁奖视频封面",
+    "photoKind": "women-podium-frame",
+    "photoVerifiedAt": "2026-11-05"
+  },
+  "jgptur2026": {
+    "photo": "assets/events/jgptur2026.jpg",
+    "photoSource": "https://weibo.com/2/detail/5344820291963507",
+    "photoCredit": "Jurij Kodrun / ISU / Getty Images（图集发布者：星星里的棒棒糖）",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-05"
+  }
+}

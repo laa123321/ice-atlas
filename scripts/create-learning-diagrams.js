@@ -1,0 +1,27 @@
+// 本站原创 SVG 结构示意图。依据见 public/learn.js；不是 ISU 原始动作图。
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const root = path.join(__dirname,'..');
+const data = vm.runInNewContext(fs.readFileSync(path.join(root,'public','learn.js'),'utf8')+'\n({jumps:JUMP_KNOWLEDGE,steps:STEP_KNOWLEDGE})');
+const destination=path.join(root,'public','assets','learn');
+fs.mkdirSync(destination,{recursive:true});
+const xml=text=>String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
+function svg(body) { return `<svg xmlns="http://www.w3.org/2000/svg" width="624" height="360" viewBox="0 0 624 360"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#648ca7"/></marker></defs><rect width="624" height="360" fill="#f1f6f9"/><g font-family="Microsoft YaHei,Segoe UI,sans-serif" fill="#476c86">${body}<text x="312" y="338" text-anchor="middle" font-size="10" fill="#91a9b8">本站绘制结构示意图 · 非 ISU 原图 · 不按比例</text></g></svg>`; }
+function figure(x,y,pose) {
+  const lines=pose==='flight'?'M0-43 0-13 M-14-34 0-23 14-34 M0-13-3 6 5 21 M0-13 5 7 0 22':pose==='landing'?'M0-43-3-15 M-3-34-27-33 M-3-34 24-39 M-3-15 5 5 10 21 M-3-15-21-7-37-12':'M0-43-6-17 M-5-34-25-21 M-5-34 18-37 M-6-17 5 1-4 21 M-6-17-23-5-16 17';
+  return `<g transform="translate(${x} ${y})" fill="none" stroke="#365f7b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><circle cy="-54" r="7" fill="#c5d7e2"/><path d="${lines}"/><path d="M-8 24h20" stroke-width="2"/></g>`;
+}
+for(const jump of data.jumps) {
+  const toe=jump.family==='点冰跳';
+  const body=`<text x="26" y="32" font-size="11" letter-spacing="2">${xml(jump.en.toUpperCase())} / ${xml(jump.code)}</text><text x="596" y="32" text-anchor="end" font-size="10" fill="#91a9b8">逆时针转体选手示例</text><path d="M150 181Q312 18 474 181" fill="none" stroke="#b3cad9" stroke-width="1.8" stroke-dasharray="5 6" marker-end="url(#arrow)"/><path d="M40 249H584" stroke="#d5e2eb" stroke-width="1.5"/>${figure(111,222,'takeoff')}${figure(312,147,'flight')}${figure(512,222,'landing')}<path d="M292 123a23 23 0 1 1 37 12" fill="none" stroke="#769cb5" stroke-width="1.5" marker-end="url(#arrow)"/><text x="312" y="205" text-anchor="middle" font-size="11">${jump.code==='A'?'名义 n 周＋半周':'名义 n 周'}</text><text x="111" y="277" text-anchor="middle" font-size="13">${xml(jump.takeoff)}</text><text x="111" y="299" text-anchor="middle" font-size="10" fill="#8aa5b8">${xml(jump.assist)}</text><text x="512" y="277" text-anchor="middle" font-size="13">${xml(jump.landing)}</text><text x="512" y="299" text-anchor="middle" font-size="10" fill="#8aa5b8">${jump.code==='Lo'||jump.code==='T'?'与持刃起跳脚相同':'与持刃起跳脚不同'}</text>${toe?'<path d="m75 236 4 8 9 1-7 5 2 8-8-4-7 5 1-9-7-4 9-2Z" fill="#a8c0d1"/>':''}<text x="111" y="80" text-anchor="middle" font-size="10" letter-spacing="2">01 / 起跳</text><text x="312" y="80" text-anchor="middle" font-size="10" letter-spacing="2">02 / 空中</text><text x="512" y="80" text-anchor="middle" font-size="10" letter-spacing="2">03 / 落冰</text>`;
+  fs.writeFileSync(path.join(destination,`jumps-${jump.id}.svg`),svg(body));
+}
+for(const step of data.steps) {
+  const sameCurve=['three-turn','bracket','mohawk'].includes(step.id);
+  const center=step.id==='twizzle'?'连续转体':step.id==='loop-turn'?'小环刃迹':step.relation.includes('换足')?'换足承重':step.id==='change-edge'?'切换冰刃':step.id==='toe-step'?'脚齿步进':'单足转身';
+  const special=step.id==='twizzle'?'<path d="M258 150c-15-30 40-30 35 0s-44 28-34-1c10-30 60-30 53 0s-44 28-34-1c10-30 60-30 53 0s-44 28-34-1" fill="none" stroke="#85a8bf" stroke-width="2.2"/>':step.id==='loop-turn'?'<path d="M260 166c64-3 80-54 52-55s-35 67 45 49" fill="none" stroke="#85a8bf" stroke-width="2.2" marker-end="url(#arrow)"/>':'<path d="M288 150a25 25 0 1 1 39 19" fill="none" stroke="#85a8bf" stroke-width="2.2" marker-end="url(#arrow)"/>';
+  const body=`<text x="26" y="33" font-size="11" letter-spacing="1">${xml(step.en.toUpperCase())}</text><text x="596" y="33" text-anchor="end" font-size="10" fill="#91a9b8">${xml(step.type)}</text><rect x="30" y="75" width="178" height="155" rx="4" fill="#fff"/><rect x="416" y="75" width="178" height="155" rx="4" fill="#fff"/><text x="119" y="104" text-anchor="middle" font-size="9" fill="#a0b4c2">进入状态示例</text><text x="505" y="104" text-anchor="middle" font-size="9" fill="#a0b4c2">滑出状态示例</text><path d="M72 174Q119 110 166 174" fill="none" stroke="#648ca7" stroke-width="3" marker-end="url(#arrow)"/><path d="${sameCurve?'M458 174Q505 110 552 174':'M458 143Q505 207 552 143'}" fill="none" stroke="#8bb4b5" stroke-width="3" marker-end="url(#arrow)"/><text x="119" y="207" text-anchor="middle" font-size="12">${xml(step.entry)}</text><text x="505" y="207" text-anchor="middle" font-size="12">${xml(step.exit)}</text><path d="M218 152h36M370 152h36" stroke="#b6cbd9" stroke-width="1.7" marker-end="url(#arrow)"/>${special}<text x="312" y="209" text-anchor="middle" font-size="11">${xml(center)}</text><text x="312" y="270" text-anchor="middle" font-size="14">${xml(step.relation)}</text><text x="312" y="297" text-anchor="middle" font-size="11" fill="#8da7b9">${xml(step.rotation)}</text>`;
+  fs.writeFileSync(path.join(destination,`steps-${step.id}.svg`),svg(body));
+}
+console.log(`Generated ${data.jumps.length+data.steps.length} original SVG diagrams.`);

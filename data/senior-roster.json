@@ -1,0 +1,613 @@
+{
+  "season": "2026/27",
+  "verifiedAt": "2026-11-05",
+  "athletes": [
+    {
+      "id": "viktoriia-safonova",
+      "name": "Viktoriia SAFONOVA",
+      "country": "AIN1",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00105615.htm",
+      "entrySources": [
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "olga-mikutina",
+      "name": "Olga MIKUTINA",
+      "country": "AUT",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00103213.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/olga-mikutina/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "nina-pinzarrone",
+      "name": "Nina PINZARRONE",
+      "country": "BEL",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00110455.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/nina-pinzarrone/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "fee-ann-landry",
+      "name": "Fee Ann LANDRY",
+      "country": "CAN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00114915.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/fee-ann-landry/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "gabrielle-daleman",
+      "name": "Gabrielle DALEMAN",
+      "country": "CAN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00054166.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/gabrielle-daleman/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "madeline-schizas",
+      "name": "Madeline SCHIZAS",
+      "country": "CAN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00106351.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/madeline-schizas/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "sara-maude-dupuis",
+      "name": "Sara-Maude DUPUIS",
+      "country": "CAN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00111127.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/sara-maude-dupuis/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "ruiyang-zhang",
+      "name": "Ruiyang ZHANG",
+      "country": "CHN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00117907.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/ruiyang-zhang/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "niina-petrokina",
+      "name": "Niina PETROKINA",
+      "country": "EST",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00104482.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/niina-petrokina/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "iida-karhunen",
+      "name": "Iida KARHUNEN",
+      "country": "FIN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00111825.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/iida-karhunen/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "olivia-lisko",
+      "name": "Olivia LISKO",
+      "country": "FIN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00107978.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/olivia-lisko/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "eve-dubecq",
+      "name": "Eve DUBECQ",
+      "country": "FRA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00110893.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/eve-dubecq/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "lorine-schild",
+      "name": "Lorine SCHILD",
+      "country": "FRA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00107370.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/lorine-schild/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "anastasiia-gubanova",
+      "name": "Anastasiia GUBANOVA",
+      "country": "GEO",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00101198.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/anastasiia-gubanova/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "mariia-seniuk",
+      "name": "Mariia SENIUK",
+      "country": "ISR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00108162.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/mariia-seniuk/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "anna-pezzetta",
+      "name": "Anna PEZZETTA",
+      "country": "ITA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00110874.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/anna-pezzetta/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "lara-naki-gutmann",
+      "name": "Lara Naki GUTMANN",
+      "country": "ITA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00035407.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/lara-naki-gutmann/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "sarina-joos",
+      "name": "Sarina JOOS",
+      "country": "ITA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00108510.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/sarina-joos/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "ami-nakai",
+      "name": "Ami NAKAI",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00111516.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/ami-nakai/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "mako-yamashita",
+      "name": "Mako YAMASHITA",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00054890.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/mako-yamashita/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "mao-shimada",
+      "name": "Mao SHIMADA",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00114088.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/mao-shimada/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "mone-chiba",
+      "name": "Mone CHIBA",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00110118.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/mone-chiba/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "rinka-watanabe",
+      "name": "Rinka WATANABE",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00054893.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/rinka-watanabe/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "rino-matsuike",
+      "name": "Rino MATSUIKE",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00107894.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/rino-matsuike/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "rion-sumiyoshi",
+      "name": "Rion SUMIYOSHI",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00102347.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/rion-sumiyoshi/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "saki-miyake",
+      "name": "Saki MIYAKE",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00123863.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/saki-miyake/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "yuna-aoki",
+      "name": "Yuna AOKI",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00014693.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/yuna-aoki/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "sofia-samodelkina",
+      "name": "Sofia SAMODELKINA",
+      "country": "KAZ",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00111213.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/sofia-samodelkina/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "ahsun-yun",
+      "name": "Ahsun YUN",
+      "country": "KOR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00111161.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/ahsun-yun/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "chaeyeon-kim",
+      "name": "Chaeyeon KIM",
+      "country": "KOR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00111162.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/chaeyeon-kim/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "haein-lee",
+      "name": "Haein LEE",
+      "country": "KOR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00104786.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/haein-lee/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "jia-shin",
+      "name": "Jia SHIN",
+      "country": "KOR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00111338.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/jia-shin/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "seojin-youn",
+      "name": "Seojin YOUN",
+      "country": "KOR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00113855.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/seojin-youn/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "seoyoung-kim",
+      "name": "Seoyoung KIM",
+      "country": "KOR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00111341.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/seoyoung-kim/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "young-you",
+      "name": "Young YOU",
+      "country": "KOR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00102446.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/young-you/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "yujae-kim",
+      "name": "Yujae KIM",
+      "country": "KOR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00113856.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/yujae-kim/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "yuseong-kim",
+      "name": "Yuseong KIM",
+      "country": "KOR",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00114920.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/yuseong-kim/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "julia-sauter",
+      "name": "Julia SAUTER",
+      "country": "ROU",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00013021.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/julia-sauter/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "kimmy-repond",
+      "name": "Kimmy REPOND",
+      "country": "SUI",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00103012.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/kimmy-repond/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "alina-bonillo",
+      "name": "Alina BONILLO",
+      "country": "USA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00120828.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/alina-bonillo/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "alysa-liu",
+      "name": "Alysa LIU",
+      "country": "USA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00103196.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/alysa-liu/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "amber-glenn",
+      "name": "Amber GLENN",
+      "country": "USA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00034367.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/amber-glenn/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    },
+    {
+      "id": "isabeau-levito",
+      "name": "Isabeau LEVITO",
+      "country": "USA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00111287.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/isabeau-levito/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpcan2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "sarah-everhardt",
+      "name": "Sarah EVERHARDT",
+      "country": "USA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00113424.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/sarah-everhardt/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/",
+        "https://results.isu.org/results/season2627/gpfra2026/CAT002EN.htm"
+      ]
+    },
+    {
+      "id": "sophie-joline-von-felten",
+      "name": "Sophie Joline VON FELTEN",
+      "country": "USA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00110306.htm",
+      "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/sophie-joline-von-felten/",
+      "entrySources": [
+        "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-2026-27-women-entries/"
+      ]
+    }
+  ]
+}

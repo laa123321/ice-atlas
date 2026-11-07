@@ -1,0 +1,49 @@
+.event-card.has-podium-photo{position:relative;isolation:isolate;overflow:hidden;min-height:350px;background:#142f42;border-color:#25465b;color:#fff;padding-top:30px}
+.event-backdrop{position:absolute;inset:0 0 0 auto;z-index:-2;width:62%;height:100%;object-fit:cover;object-position:center top;opacity:.85}
+.has-podium-photo::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,24,38,.93),rgba(7,24,38,.6) 38%,rgba(7,24,38,.06) 68%),linear-gradient(0deg,rgba(7,24,38,.92),transparent 62%)}
+.has-podium-photo .event-heading{min-height:220px;align-items:flex-start}
+.has-podium-photo .event-heading h3{color:#fff;text-shadow:0 2px 12px #102434;margin-top:8px}
+.has-podium-photo .event-date,.has-podium-photo .event-location{color:#edf5fc;text-shadow:0 1px 5px #102434}
+.has-podium-photo .group-badge{color:#fff;background:#23485e;border-color:#7c9aaa}
+.has-podium-photo .event-state{background:#143d39;color:#e6fff7;border:1px solid #81ac9e}
+.has-podium-photo .event-podium{background:rgba(8,27,41,.93);border:1px solid #536d80;padding:20px;border-radius:4px;margin:0 0 13px;gap:18px}
+.has-podium-photo .event-podium a{color:#fff;text-decoration-color:#c5ddec}
+.has-podium-photo .event-podium a:hover{color:#cff0ff;text-decoration:underline;text-underline-offset:4px}
+.has-podium-photo .event-podium a>span{color:#c9e0ef}
+.has-podium-photo .event-podium p{color:#e2edf5}
+.has-podium-photo .event-source{color:#d6e5ef;border:0;padding-top:0}
+.has-podium-photo .event-source a{color:#e1f0fb;text-decoration:underline;text-underline-offset:3px}
+.event-source{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px 20px}
+#event-jgppol2026 .event-backdrop{filter:brightness(1.45)}
+.career-controls{display:flex;width:max-content;margin:0 0 18px;gap:12px}.career-medals-table tr[hidden]{display:none}
+@media(max-width:760px){.event-card.has-podium-photo{padding:20px;min-height:490px}.has-podium-photo .event-heading{min-height:190px;gap:12px}.has-podium-photo .event-heading h3{font-size:21px}.has-podium-photo .event-state{white-space:nowrap}.has-podium-photo .event-podium{padding:18px;gap:17px}.has-podium-photo::before{background:linear-gradient(180deg,rgba(7,24,38,.74),rgba(7,24,38,.25) 34%,rgba(7,24,38,.88) 65%,#071826)}.event-backdrop{width:100%;height:260px;object-fit:contain;object-position:center top}.has-podium-photo .event-source{font-size:12px;line-height:2}}
+/* 卡片密度调整：仅尺寸和排版，沿用原有摄影背景、遮罩与奖牌配色。 */
+@media(min-width:761px){
+  .event-card.has-podium-photo{min-height:380px;padding:24px 28px 20px;display:grid;grid-template-rows:minmax(150px,1fr) auto auto;gap:12px}
+  .has-podium-photo .event-heading{min-height:0;gap:20px}
+  .has-podium-photo .event-heading>div{max-width:58%}
+  .has-podium-photo .event-heading h3{margin:5px 0 8px;font-size:23px;line-height:1.5}
+  .has-podium-photo .event-date{margin-bottom:5px;line-height:1.6}
+  .has-podium-photo .event-location{line-height:1.7}
+  .has-podium-photo .event-backdrop{width:40%;height:calc(100% - 120px);object-fit:contain;object-position:center top}
+  .has-podium-photo .event-podium{min-height:100px;margin:0;padding:15px 18px;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:center}
+  .has-podium-photo .event-podium li{align-items:center;gap:12px}
+  .has-podium-photo .event-podium li>div{min-width:0}
+  .has-podium-photo .event-podium a{font-size:16px;line-height:1.55}
+  .has-podium-photo .event-podium p{font-size:14px;line-height:1.6;margin:4px 0 0;font-variant-numeric:tabular-nums}
+  .has-podium-photo .medal{width:32px;height:32px}
+  .has-podium-photo .event-source{margin:0;line-height:1.7;min-height:21px}
+}
+.events-calendar-page .calendar-month-events{gap:26px}
+@media(max-width:760px){
+  .event-card.has-podium-photo{min-height:0;padding:20px}
+  .has-podium-photo .event-heading{min-height:175px}
+  .has-podium-photo .event-podium{min-height:0;margin:0 0 13px;padding:15px;grid-template-columns:1fr;gap:13px}
+  .has-podium-photo .event-podium a{line-height:1.55}
+  .has-podium-photo .event-podium p{margin-top:3px;line-height:1.6}
+  .has-podium-photo .event-source{margin-top:0}
+}
+/* 前三名使用统一的无衬线数字和高对比奖牌底色。 */
+.event-podium .medal{width:40px;height:40px;border:1px solid #e6c25c;background:#f5d777;color:#624707;font:700 21px/1 "Segoe UI","Microsoft YaHei",sans-serif;font-variant-numeric:lining-nums tabular-nums}
+.event-podium .medal-2{background:#e1e7ed;border-color:#c1ccd6;color:#425463}
+.event-podium .medal-3{background:#dfb08a;border-color:#cb946a;color:#60391f}

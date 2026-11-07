@@ -1,0 +1,594 @@
+{
+  "season": "2026/27",
+  "seasonStart": "2026-07-01",
+  "seasonEnd": "2027-06-30",
+  "scheduleVerifiedAt": "2026-11-04",
+  "syncedAt": null,
+  "seedVerifiedAt": "2026-11-04",
+  "syncIntervalHours": 6,
+  "events": [
+    {
+      "id": "jgpchn2026",
+      "name": "青年大奖赛·中国站",
+      "group": "junior",
+      "series": "jgp",
+      "city": "西安",
+      "country": "CHN",
+      "start": "2026-08-20",
+      "end": "2026-08-22",
+      "resultIndex": "https://results.isu.org/results/season2627/jgpchn2026/",
+      "source": "https://results.isu.org/results/season2627/jgpchn2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/jgpchn2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 213.28,
+          "athleteId": "sofiia-dzepka"
+        },
+        {
+          "place": 2,
+          "score": 189.57,
+          "athleteId": "yuxuan-liu"
+        },
+        {
+          "place": 3,
+          "score": 188.8,
+          "athleteId": "shuxian-jin"
+        }
+      ],
+      "verifiedAt": "2026-11-04T03:07:26.757Z"
+    },
+    {
+      "id": "jgplat2026",
+      "name": "青年大奖赛·拉脱维亚站",
+      "group": "junior",
+      "series": "jgp",
+      "city": "里加",
+      "country": "LAT",
+      "start": "2026-08-26",
+      "end": "2026-08-29",
+      "resultIndex": "https://results.isu.org/results/season2627/jgplat2026/",
+      "source": "https://results.isu.org/results/season2627/jgplat2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/jgplat2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 209.07,
+          "athleteId": "hana-bath"
+        },
+        {
+          "place": 2,
+          "score": 205.47,
+          "athleteId": "mei-okada"
+        },
+        {
+          "place": 3,
+          "score": 195.03,
+          "athleteId": "yihan-wang"
+        }
+      ],
+      "verifiedAt": "2026-11-04T03:07:26.935Z"
+    },
+    {
+      "id": "jgptha2026",
+      "name": "青年大奖赛·泰国站",
+      "group": "junior",
+      "series": "jgp",
+      "city": "曼谷",
+      "country": "THA",
+      "start": "2026-09-03",
+      "end": "2026-09-05",
+      "resultIndex": "https://results.isu.org/results/season2627/jgptha2026/",
+      "source": "https://results.isu.org/results/season2627/jgptha2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/jgptha2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 205.73,
+          "athleteId": "sofiia-dzepka"
+        },
+        {
+          "place": 2,
+          "score": 202.79,
+          "athleteId": "sumika-kanazawa"
+        },
+        {
+          "place": 3,
+          "score": 192.75,
+          "athleteId": "lia-cho"
+        }
+      ],
+      "verifiedAt": "2026-11-04T03:07:27.270Z"
+    },
+    {
+      "id": "jgptur2026",
+      "name": "青年大奖赛·土耳其站",
+      "group": "junior",
+      "series": "jgp",
+      "city": "安卡拉",
+      "country": "TUR",
+      "start": "2026-09-17",
+      "end": "2026-09-19",
+      "resultIndex": "https://results.isu.org/results/season2627/jgptur2026/",
+      "source": "https://results.isu.org/results/season2627/jgptur2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/jgptur2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 206.38,
+          "athleteId": "mei-okada"
+        },
+        {
+          "place": 2,
+          "score": 194.5,
+          "athleteId": "shuxian-jin"
+        },
+        {
+          "place": 3,
+          "score": 179.64,
+          "athleteId": "stefania-gladki"
+        }
+      ],
+      "verifiedAt": "2026-11-04T03:07:29.064Z"
+    },
+    {
+      "id": "jgpgeo2026",
+      "name": "青年大奖赛·格鲁吉亚站",
+      "group": "junior",
+      "series": "jgp",
+      "city": "巴统",
+      "country": "GEO",
+      "start": "2026-09-24",
+      "end": "2026-09-26",
+      "resultIndex": "https://results.isu.org/results/season2627/jgpgeo2026/",
+      "source": "https://results.isu.org/results/season2627/jgpgeo2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/jgpgeo2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 201.82,
+          "athleteId": "yihan-wang"
+        },
+        {
+          "place": 2,
+          "score": 196.29,
+          "athleteId": "sophia-shifrin"
+        },
+        {
+          "place": 3,
+          "score": 189.92,
+          "athleteId": "stefania-gladki"
+        }
+      ],
+      "verifiedAt": "2026-11-04T03:07:29.376Z"
+    },
+    {
+      "id": "jgpslo2026",
+      "name": "青年大奖赛·斯洛文尼亚站",
+      "group": "junior",
+      "series": "jgp",
+      "city": "卢布尔雅那",
+      "country": "SLO",
+      "start": "2026-10-01",
+      "end": "2026-10-03",
+      "resultIndex": "https://results.isu.org/results/season2627/jgpslo2026/",
+      "source": "https://results.isu.org/results/season2627/jgpslo2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/jgpslo2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 198.86,
+          "athleteId": "hana-bath"
+        },
+        {
+          "place": 2,
+          "score": 188.04,
+          "athleteId": "yuxuan-liu"
+        },
+        {
+          "place": 3,
+          "score": 176.19,
+          "athleteId": "leandra-tzimpoukakis"
+        }
+      ],
+      "verifiedAt": "2026-11-04T03:07:29.564Z"
+    },
+    {
+      "id": "jgppol2026",
+      "name": "青年大奖赛·波兰站",
+      "group": "junior",
+      "series": "jgp",
+      "city": "格但斯克",
+      "country": "POL",
+      "start": "2026-10-08",
+      "end": "2026-10-10",
+      "resultIndex": "https://results.isu.org/results/season2627/jgppol2026/",
+      "source": "https://results.isu.org/results/season2627/jgppol2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/jgppol2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 196.37,
+          "athleteId": "sumika-kanazawa"
+        },
+        {
+          "place": 2,
+          "score": 195.76,
+          "athleteId": "lia-cho"
+        },
+        {
+          "place": 3,
+          "score": 189.11,
+          "athleteId": "elisabeth-dibbern"
+        }
+      ],
+      "verifiedAt": "2026-11-04T03:07:31.317Z"
+    },
+    {
+      "id": "gpfra2026",
+      "name": "大奖赛·法国站",
+      "group": "senior",
+      "series": "gp",
+      "city": "昂热",
+      "country": "FRA",
+      "start": "2026-10-23",
+      "end": "2026-10-25",
+      "resultIndex": "https://results.isu.org/results/season2627/gpfra2026/",
+      "source": "https://results.isu.org/results/season2627/gpfra2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/gpfra2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 219.74,
+          "athleteId": "ami-nakai"
+        },
+        {
+          "place": 2,
+          "score": 202.82,
+          "athleteId": "anastasiia-gubanova"
+        },
+        {
+          "place": 3,
+          "score": 202.37,
+          "athleteId": "lara-naki-gutmann"
+        }
+      ],
+      "verifiedAt": "2026-11-04T03:07:30.741Z"
+    },
+    {
+      "id": "gpcan2026",
+      "name": "大奖赛·加拿大站",
+      "group": "senior",
+      "series": "gp",
+      "city": "基洛纳",
+      "country": "CAN",
+      "start": "2026-10-29",
+      "end": "2026-11-01",
+      "resultIndex": "https://results.isu.org/results/season2627/gpcan2026/",
+      "source": "https://results.isu.org/results/season2627/gpcan2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/gpcan2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 235.44,
+          "athleteId": "mao-shimada"
+        },
+        {
+          "place": 2,
+          "score": 221.07,
+          "athleteId": "niina-petrokina"
+        },
+        {
+          "place": 3,
+          "score": 212.22,
+          "athleteId": "isabeau-levito"
+        }
+      ],
+      "verifiedAt": "2026-11-04T03:07:31.651Z"
+    },
+    {
+      "id": "gpchn2026",
+      "name": "大奖赛·中国站",
+      "group": "senior",
+      "series": "gp",
+      "city": "深圳",
+      "country": "CHN",
+      "start": "2026-11-06",
+      "end": "2026-11-08",
+      "resultIndex": "https://results.isu.org/results/season2627/gpchn2026/",
+      "source": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "scheduleSource": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "podium": []
+    },
+    {
+      "id": "gpusa2026",
+      "name": "大奖赛·美国站",
+      "group": "senior",
+      "series": "gp",
+      "city": "埃弗里特",
+      "country": "USA",
+      "start": "2026-11-13",
+      "end": "2026-11-15",
+      "resultIndex": "https://results.isu.org/results/season2627/gpusa2026/",
+      "source": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "scheduleSource": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "podium": []
+    },
+    {
+      "id": "gpfin2026",
+      "name": "大奖赛·芬兰站",
+      "group": "senior",
+      "series": "gp",
+      "city": "赫尔辛基",
+      "country": "FIN",
+      "start": "2026-11-20",
+      "end": "2026-11-22",
+      "resultIndex": "https://results.isu.org/results/season2627/gpfin2026/",
+      "source": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "scheduleSource": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "podium": []
+    },
+    {
+      "id": "gpjpn2026",
+      "name": "大奖赛·日本站 NHK Trophy",
+      "group": "senior",
+      "series": "gp",
+      "city": "东京",
+      "country": "JPN",
+      "start": "2026-11-27",
+      "end": "2026-11-29",
+      "resultIndex": "https://results.isu.org/results/season2627/gpjpn2026/",
+      "source": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "scheduleSource": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "podium": []
+    },
+    {
+      "id": "gpf2026-junior",
+      "name": "青年大奖赛总决赛",
+      "group": "junior",
+      "series": "final",
+      "city": "重庆",
+      "country": "CHN",
+      "start": "2026-12-10",
+      "end": "2026-12-13",
+      "resultIndex": "https://results.isu.org/results/season2627/gpf2026/",
+      "source": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "scheduleSource": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "podium": []
+    },
+    {
+      "id": "gpf2026-senior",
+      "name": "成年大奖赛总决赛",
+      "group": "senior",
+      "series": "final",
+      "city": "重庆",
+      "country": "CHN",
+      "start": "2026-12-10",
+      "end": "2026-12-13",
+      "resultIndex": "https://results.isu.org/results/season2627/gpf2026/",
+      "source": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "scheduleSource": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
+      "podium": []
+    },
+    {
+      "id": "ec2027",
+      "name": "欧洲花样滑冰锦标赛",
+      "group": "senior",
+      "series": "championship",
+      "city": "洛桑",
+      "country": "SUI",
+      "start": "2027-01-27",
+      "end": "2027-01-31",
+      "resultIndex": "https://results.isu.org/results/season2627/ec2027/",
+      "source": "https://www.isu-skating.com/en/figure-skating/events/?eventLevel=ISU&month=All&type=32",
+      "scheduleSource": "https://www.isu-skating.com/en/figure-skating/events/?eventLevel=ISU&month=All&type=32",
+      "podium": []
+    },
+    {
+      "id": "fc2027",
+      "name": "四大洲花样滑冰锦标赛",
+      "group": "senior",
+      "series": "championship",
+      "city": "阿拉木图",
+      "country": "KAZ",
+      "start": "2027-02-10",
+      "end": "2027-02-14",
+      "resultIndex": "https://results.isu.org/results/season2627/fc2027/",
+      "source": "https://www.isu-skating.com/en/figure-skating/events/?eventLevel=ISU&month=All&type=32",
+      "scheduleSource": "https://www.isu-skating.com/en/figure-skating/events/?eventLevel=ISU&month=All&type=32",
+      "podium": []
+    },
+    {
+      "id": "wjc2027",
+      "name": "世界青年花样滑冰锦标赛",
+      "group": "junior",
+      "series": "championship",
+      "city": "索非亚",
+      "country": "BUL",
+      "start": "2027-02-24",
+      "end": "2027-02-28",
+      "resultIndex": "https://results.isu.org/results/season2627/wjc2027/",
+      "source": "https://www.isu-skating.com/en/figure-skating/events/?eventLevel=ISU&month=All&type=32",
+      "scheduleSource": "https://www.isu-skating.com/en/figure-skating/events/?eventLevel=ISU&month=All&type=32",
+      "podium": []
+    },
+    {
+      "id": "wc2027",
+      "name": "世界花样滑冰锦标赛",
+      "group": "senior",
+      "series": "championship",
+      "city": "坦佩雷",
+      "country": "FIN",
+      "start": "2027-03-17",
+      "end": "2027-03-21",
+      "resultIndex": "https://results.isu.org/results/season2627/wc2027/",
+      "source": "https://www.isu-skating.com/en/figure-skating/events/?eventLevel=ISU&month=All&type=32",
+      "scheduleSource": "https://www.isu-skating.com/en/figure-skating/events/?eventLevel=ISU&month=All&type=32",
+      "podium": []
+    }
+  ],
+  "athletes": [
+    {
+      "id": "sofiia-dzepka",
+      "name": "Sofiia DZEPKA",
+      "country": "AIN2",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00121726.htm"
+    },
+    {
+      "id": "yuxuan-liu",
+      "name": "Yuxuan LIU",
+      "country": "CHN",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00120987.htm"
+    },
+    {
+      "id": "shuxian-jin",
+      "name": "Shuxian JIN",
+      "country": "CHN",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00121053.htm"
+    },
+    {
+      "id": "hana-bath",
+      "name": "Hana BATH",
+      "country": "AUS",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00114114.htm"
+    },
+    {
+      "id": "mei-okada",
+      "name": "Mei OKADA",
+      "country": "JPN",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00120847.htm"
+    },
+    {
+      "id": "yihan-wang",
+      "name": "Yihan WANG",
+      "country": "CHN",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00118197.htm"
+    },
+    {
+      "id": "sumika-kanazawa",
+      "name": "Sumika KANAZAWA",
+      "country": "JPN",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00123908.htm"
+    },
+    {
+      "id": "lia-cho",
+      "name": "Lia CHO",
+      "country": "CAN",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00120295.htm"
+    },
+    {
+      "id": "stefania-gladki",
+      "name": "Stefania GLADKI",
+      "country": "FRA",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00117668.htm"
+    },
+    {
+      "id": "sophia-shifrin",
+      "name": "Sophia SHIFRIN",
+      "country": "ISR",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00114958.htm"
+    },
+    {
+      "id": "leandra-tzimpoukakis",
+      "name": "Leandra TZIMPOUKAKIS",
+      "country": "SUI",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00109893.htm"
+    },
+    {
+      "id": "elisabeth-dibbern",
+      "name": "Elisabeth DIBBERN",
+      "country": "SUI",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00111863.htm"
+    },
+    {
+      "id": "ami-nakai",
+      "name": "Ami NAKAI",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00111516.htm"
+    },
+    {
+      "id": "anastasiia-gubanova",
+      "name": "Anastasiia GUBANOVA",
+      "country": "GEO",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00101198.htm"
+    },
+    {
+      "id": "lara-naki-gutmann",
+      "name": "Lara Naki GUTMANN",
+      "country": "ITA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00035407.htm"
+    },
+    {
+      "id": "mao-shimada",
+      "name": "Mao SHIMADA",
+      "country": "JPN",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00114088.htm"
+    },
+    {
+      "id": "niina-petrokina",
+      "name": "Niina PETROKINA",
+      "country": "EST",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00104482.htm"
+    },
+    {
+      "id": "isabeau-levito",
+      "name": "Isabeau LEVITO",
+      "country": "USA",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://www.isuresults.com/bios/isufs00111287.htm"
+    }
+  ]
+}

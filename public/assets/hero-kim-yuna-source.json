@@ -1,0 +1,5 @@
+{
+  "source": "User-provided Kim Yuna yellow-costume screenshot",
+  "processing": "Built-in imagegen background extraction, alpha cleanup and lossless WebP export",
+  "prompt": "Extract only the supplied skater on real transparent alpha. Preserve downward gaze, identity, hair, earrings, yellow jeweled costume, upper torso and raised arm with original top crop. Remove arena and other people. Opaque person, detailed alpha edges, no haze, shadow, text or webpage redesign."
+}
