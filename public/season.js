@@ -43,18 +43,26 @@ function renderSeasonPage(route,raw) {
 function eventSeries(event) {
   return ({gp:'大奖赛',jgp:'青年大奖赛',final:'大奖赛总决赛',championship:'锦标赛'})[event.series]||groupName(event.group);
 }
-function nextEventPreview(event) {
+function selectFeaturedEvent(events, day) {
+  // 赛程只有日期，结束当天仍保留本场，即使女单成绩已经公布。
+  return events.filter(event => event.end >= day)
+    .sort((a, b) => a.start.localeCompare(b.start))[0];
+}
+
+function nextEventPreview(event, day=currentCalendarDay()) {
   if(!event)return '';
-  const [year,month,day]=event.start.split('-'),[endYear,endMonth,endDay]=event.end.split('-');
+  const [year,month,startDay]=event.start.split('-'),[endYear,endMonth,endDay]=event.end.split('-');
   const sameMonth=event.start.slice(0,7)===event.end.slice(0,7),sameDay=event.start===event.end;
   const week=value=>new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Singapore',weekday:'short'}).format(new Date(`${value}T12:00:00+08:00`));
   const preview=event.preview||{},englishSeries=({gp:'ISU GRAND PRIX',jgp:'ISU JUNIOR GRAND PRIX',final:'ISU GRAND PRIX FINAL',championship:'ISU CHAMPIONSHIPS'})[event.series]||'FIGURE SKATING';
   const image=/^assets\/[a-zA-Z0-9/_-]+\.(?:jpg|jpeg|png|webp)$/.test(preview.image||'')?preview.image:null;
-  const status={upcoming:'即将开始',ongoing:'正在进行',finished:'已结束',pending:'成绩待更新'}[eventStatus(event)];
+  const inProgress=event.start<=day&&day<=event.end;
+  const status={upcoming:'即将开始',ongoing:'正在进行',finished:'已结束',pending:'成绩待更新'}[inProgress?'ongoing':eventStatus(event,day)];
+  const kicker=inProgress?'CURRENT EVENT / 进行中':'NEXT EVENT / 下一场';
   const dateLabel=sameMonth?`${year} 年 ${Number(month)} 月`:`${year}.${month} — ${endYear===year?'':endYear+'.'}${endMonth}`;
   const pin='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.3"/></svg>';
   const person='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="7" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>';
-  return `<div class="calendar-ticket-shell"><section class="calendar-next" aria-labelledby="calendar-next-title"><div class="calendar-next-copy"><p class="calendar-kicker">NEXT EVENT / 下一场</p><h2 id="calendar-next-title">${escapeText(event.name)}</h2><p class="calendar-next-english">${escapeText(preview.subtitle||englishSeries)}</p><div class="calendar-next-meta"><span>${pin}${escapeText(event.city)} · ${escapeText(countryName(event.country))}</span><span>${person}${groupName(event.group)}</span></div><a id="next-event-link" href="#/events?event=${escapeText(event.id)}">查看赛事详情 <span aria-hidden="true">→</span></a></div><div class="calendar-next-date"><span class="ticket-month">${dateLabel}</span><div class="ticket-days"><time datetime="${escapeText(event.start)}"><strong>${day}</strong><small>(${week(event.start)})</small></time>${sameDay?'':`<span class="ticket-date-dash" aria-hidden="true">—</span><time datetime="${escapeText(event.end)}"><strong>${endDay}</strong><small>(${week(event.end)})</small></time>`}</div><span class="ticket-status">${status}</span></div><div class="calendar-next-visual${image?' has-preview-image':''}">${image?`<img src="${escapeText(image)}" alt="${escapeText(preview.imageAlt||event.name+'赛事主视觉')}" width="1289" height="860">`:`<div class="ticket-visual-placeholder" aria-hidden="true"></div>`}</div></section></div>`;
+  return `<div class="calendar-ticket-shell"><section class="calendar-next" aria-labelledby="calendar-next-title"><div class="calendar-next-copy"><p class="calendar-kicker">${kicker}</p><h2 id="calendar-next-title">${escapeText(event.name)}</h2><p class="calendar-next-english">${escapeText(preview.subtitle||englishSeries)}</p><div class="calendar-next-meta"><span>${pin}${escapeText(event.city)} · ${escapeText(countryName(event.country))}</span><span>${person}${groupName(event.group)}</span></div><a id="next-event-link" href="#/events?event=${escapeText(event.id)}">查看赛事详情 <span aria-hidden="true">→</span></a></div><div class="calendar-next-date"><span class="ticket-month">${dateLabel}</span><div class="ticket-days"><time datetime="${escapeText(event.start)}"><strong>${startDay}</strong><small>(${week(event.start)})</small></time>${sameDay?'':`<span class="ticket-date-dash" aria-hidden="true">—</span><time datetime="${escapeText(event.end)}"><strong>${endDay}</strong><small>(${week(event.end)})</small></time>`}</div><span class="ticket-status">${status}</span></div><div class="calendar-next-visual${image?' has-preview-image':''}">${image?`<img src="${escapeText(image)}" alt="${escapeText(preview.imageAlt||event.name+'赛事主视觉')}" width="1289" height="860">`:`<div class="ticket-visual-placeholder" aria-hidden="true"></div>`}</div></section></div>`;
 }
 function eventMonths(events) {
   if(!events.length)return '<div class="content-loading">没有符合筛选条件的赛事。</div>';
@@ -68,9 +76,9 @@ function renderEvents(raw) {
   const filter=['upcoming','finished','ongoing'].includes(params.get('status'))?params.get('status'):'all';
   const day=currentCalendarDay();
   const events=seasonSnapshot.events.filter(e=>(group==='all'||e.group===group)&&(filter==='all'||(filter==='finished'?['finished','pending'].includes(eventStatus(e,day)):eventStatus(e,day)===filter))).sort((a,b)=>a.start.localeCompare(b.start)||a.group.localeCompare(b.group));
-  const next=seasonSnapshot.events.filter(e=>e.start>=day&&!e.podium?.length).sort((a,b)=>a.start.localeCompare(b.start))[0];
+  const next=selectFeaturedEvent(seasonSnapshot.events,day);
   const updated=seasonSnapshot.syncedAt?new Date(seasonSnapshot.syncedAt).toLocaleString('zh-CN',{timeZone:'Asia/Singapore',hour12:false}):`${seasonSnapshot.seedVerifiedAt} 人工核对快照`;
-  blankCanvas.innerHTML=`${nextEventPreview(next)}<div class="calendar-list-heading"><div><p class="calendar-kicker">${seasonSnapshot.season} / SEASON CALENDAR</p><h2>赛事日历</h2></div><span>${seasonSnapshot.events.length} 场已收录赛事</span></div><div class="season-controls"><div class="segmented-control" aria-label="赛事组别">${[['all','全部组别'],['senior','成年组'],['junior','青年组']].map(([v,n])=>`<a href="#/events?group=${v}&status=${filter}" ${group===v?'aria-current="page"':''}>${n}</a>`).join('')}</div><label class="select-label">赛事状态<select id="event-status"><option value="all">全部状态</option><option value="upcoming">未开始</option><option value="ongoing">进行中</option><option value="finished">已结束</option></select></label><button id="refresh-season" class="small-button" type="button">刷新页面数据 ↻</button></div><div class="sync-line"><span>最近同步：${escapeText(updated)}（UTC+8）${seasonSnapshot.syncing?' · 正在同步':''}</span></div><div class="event-list">${eventMonths(events)}</div><p class="learn-smallprint">日期状态按 UTC+8 更新；赛事日期含官方成绩页所列活动日。未开放成绩页的赛程采用 ISU 已公布安排，后续以官方公告为准。点击前三名姓名可查看选手简介。</p>`;
+  blankCanvas.innerHTML=`${nextEventPreview(next,day)}<div class="calendar-list-heading"><div><p class="calendar-kicker">${seasonSnapshot.season} / SEASON CALENDAR</p><h2>赛事日历</h2></div><span>${seasonSnapshot.events.length} 场已收录赛事</span></div><div class="season-controls"><div class="segmented-control" aria-label="赛事组别">${[['all','全部组别'],['senior','成年组'],['junior','青年组']].map(([v,n])=>`<a href="#/events?group=${v}&status=${filter}" ${group===v?'aria-current="page"':''}>${n}</a>`).join('')}</div><label class="select-label">赛事状态<select id="event-status"><option value="all">全部状态</option><option value="upcoming">未开始</option><option value="ongoing">进行中</option><option value="finished">已结束</option></select></label><button id="refresh-season" class="small-button" type="button">刷新页面数据 ↻</button></div><div class="sync-line"><span>最近同步：${escapeText(updated)}（UTC+8）${seasonSnapshot.syncing?' · 正在同步':''}</span></div><div class="event-list">${eventMonths(events)}</div><p class="learn-smallprint">日期状态按 UTC+8 更新；赛事日期含官方成绩页所列活动日。未开放成绩页的赛程采用 ISU 已公布安排，后续以官方公告为准。点击前三名姓名可查看选手简介。</p>`;
   const select=document.querySelector('#event-status');select.value=filter;select.addEventListener('change',()=>{location.hash=`/events?group=${group}&status=${select.value}`;});
   document.querySelector('#refresh-season').addEventListener('click',async event=>{
     const button=event.currentTarget;button.disabled=true;button.textContent='正在读取…';
