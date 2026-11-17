@@ -1,0 +1,186 @@
+{
+  "season": "2026/27",
+  "verifiedAt": "2026-11-09",
+  "athletes": [
+    {
+      "id": "viktoriia-safonova",
+      "name": "Viktoriia SAFONOVA",
+      "country": "AIN1",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00105615.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustsen.htm"
+      ]
+    },
+    {
+      "id": "anna-frolova",
+      "name": "Anna FROLOVA",
+      "country": "AIN2",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00107992.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustsen.htm"
+      ]
+    },
+    {
+      "id": "alina-gorbacheva",
+      "name": "Alina GORBACHEVA",
+      "country": "AIN2",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00111206.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustsen.htm"
+      ]
+    },
+    {
+      "id": "alexandra-ignatova",
+      "name": "Alexandra IGNATOVA",
+      "country": "AIN2",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00102760.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustsen.htm"
+      ]
+    },
+    {
+      "id": "dina-khusnutdinova",
+      "name": "Dina KHUSNUTDINOVA",
+      "country": "AIN2",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00124307.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustsen.htm"
+      ]
+    },
+    {
+      "id": "kamilla-neliubova",
+      "name": "Kamilla NELIUBOVA",
+      "country": "AIN2",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00126918.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustsen.htm"
+      ]
+    },
+    {
+      "id": "adeliia-petrosian",
+      "name": "Adeliia PETROSIAN",
+      "country": "AIN2",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00111203.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustsen.htm"
+      ]
+    },
+    {
+      "id": "mariia-zakharova",
+      "name": "Mariia ZAKHAROVA",
+      "country": "AIN2",
+      "groups": [
+        "senior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00111217.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustsen.htm"
+      ]
+    },
+    {
+      "id": "mariya-evtukhina",
+      "name": "Mariya EVTUKHINA",
+      "country": "AIN1",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00126739.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustjun.htm"
+      ]
+    },
+    {
+      "id": "yaraslava-kniazeva",
+      "name": "Yaraslava KNIAZEVA",
+      "country": "AIN1",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00126684.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustjun.htm"
+      ]
+    },
+    {
+      "id": "varvara-stahovich",
+      "name": "Varvara STAHOVICH",
+      "country": "AIN1",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00126668.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustjun.htm"
+      ]
+    },
+    {
+      "id": "sofiia-dzepka",
+      "name": "Sofiia DZEPKA",
+      "country": "AIN2",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00121726.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustjun.htm"
+      ]
+    },
+    {
+      "id": "alena-prineva",
+      "name": "Alena PRINEVA",
+      "country": "AIN2",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00121760.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustjun.htm"
+      ]
+    },
+    {
+      "id": "viktoriia-streltsova",
+      "name": "Viktoriia STRELTSOVA",
+      "country": "AIN2",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00123562.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustjun.htm"
+      ]
+    },
+    {
+      "id": "alisa-zaikina",
+      "name": "Alisa ZAIKINA",
+      "country": "AIN2",
+      "groups": [
+        "junior"
+      ],
+      "bioUrl": "https://results.isu.org/bios/isufs00126167.htm",
+      "entrySources": [
+        "https://results.isu.org/isujsstat/CTES/cteswjustjun.htm"
+      ]
+    }
+  ]
+}

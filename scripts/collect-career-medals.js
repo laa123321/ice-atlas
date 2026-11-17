@@ -1,28 +1,11 @@
 // ISU Competition Results 生涯档案：仅保留成年/青年国际赛事最终总名次前三。
 const fs=require('node:fs/promises');
 const path=require('node:path');
-const cheerio=require('cheerio');
+const {parseCareerMedals}=require('../src/athlete-archive');
 const {isuFetch}=require('../src/isu-fetch');
 const {mergeAthletes}=require('../src/athletes');
 const seed={athletes:mergeAthletes()};
 const root=path.join(__dirname,'..');
-const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
-function parseCareerMedals(html,source){
- const $=cheerio.load(html);const records=[];let category='';
- $('tr').each((_,row)=>{
-  const cells=$(row).children('td,th').toArray().map(el=>clean($(el).text()));
-  const nonempty=cells.filter(Boolean);
-  if(nonempty.length===1){category=nonempty[0];return;}
-  if(cells.length<4||/^National/i.test(category))return;
-  const event=cells[1],discipline=cells[2],place=cells[3];
-  if(!event||!/^([123])$/.test(place)||!/^(?:Junior\s+)?(?:Women|Ladies)(?:\s+\d+)?$/.test(discipline))return;
-  if(!/Olympic|World|European|Continents|Grand Prix|Challenger|International Competition/i.test(category))return;
-  const year=Number(event.match(/20\d{2}/)?.[0]);if(!year)return;
-  const group=/Junior/.test(discipline)?'junior':'senior';
-  records.push({year,event,group,rank:Number(place),category,country:cells[5]||'',source});
- });
- const seen=new Set();return records.filter(r=>{const key=r.event+'|'+r.group;if(seen.has(key))return false;seen.add(key);return true;}).sort((a,b)=>b.year-a.year||a.rank-b.rank||a.event.localeCompare(b.event));
-}
 async function main(){
  const filename=path.join(root,'data/athlete-profiles.json');const profiles=JSON.parse(await fs.readFile(filename,'utf8'));const failures=[];let cursor=0;
  await fs.mkdir(path.join(root,'.tmp/podium'),{recursive:true});

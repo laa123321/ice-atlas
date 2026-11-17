@@ -20,7 +20,9 @@ function renderRankings(raw){
  const tabs=blankCanvas.querySelector('.ranking-tabs');tabs.before(toolbar);toolbar.append(tabs,blankCanvas.querySelector('.ranking-controls'));
  const heading=blankCanvas.querySelector('.ranking-heading');const source=heading.querySelector('a');const sync=blankCanvas.querySelector('.ranking-sync');
  sync.insertBefore(source,sync.querySelector('button'));heading.remove();sync.querySelector('small')?.remove();
- document.querySelector('.section-number').textContent=data.season?data.season.replace(/(20\d{2})\/20(\d{2})/,'$1/$2')+' 赛季':'';
+ const seasonLabel = document.querySelector('.section-season');
+ seasonLabel.textContent = data.season ? data.season.replace(/(20\d{2})\/20(\d{2})/, '$1/$2') + ' 赛季' : '';
+ seasonLabel.hidden = !data.season;
  const filter=rankingFilters[group];const input=document.querySelector('#ranking-search'),select=document.querySelector('#ranking-country');input.value=filter.q;select.value=filter.country;
  function update(){
   const q=filter.q.trim().toLowerCase();const rows=data.rows.filter(r=>(filter.country==='all'||r.country===filter.country)&&`${r.name} ${r.country} ${countryName(r.country)}`.toLowerCase().includes(q));

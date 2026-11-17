@@ -8,19 +8,19 @@ const root=path.join(__dirname,'..');
 const clean=t=>String(t||'').replace(/\s+/g,' ').trim();
 const eventNames={'Olympic Games':'冬奥会','World Championships':'世界锦标赛','World Championship':'世界锦标赛','European Championships':'欧洲锦标赛','European Championship':'欧洲锦标赛','Four Continents Championships':'四大洲锦标赛','Four Continents':'四大洲锦标赛','World Junior Championships':'世界青年锦标赛','World Juniors':'世界青年锦标赛'};
 async function get(url){const response=await isuFetch(url,{signal:AbortSignal.timeout(20000)});if(!response.ok)throw new Error('HTTP '+response.status);return response;}
-async function collect(athlete){
+async function collect(athlete,{cacheHtml=true,verifiedAt='2026-11-04'}={}){
   const profileUrl='https://www.isu-skating.com/en/figure-skating/skaters/'+athlete.id+'/';
   const bioUrl=athlete.bioUrl.replace('www.isuresults.com','results.isu.org').replace('isuresults.com','results.isu.org');
   const oldHtml=await (await get(bioUrl)).text();
-  await fs.writeFile(path.join(root,'.tmp',athlete.id+'-bio.html'),oldHtml);
+  if(cacheHtml)await fs.writeFile(path.join(root,'.tmp',athlete.id+'-bio.html'),oldHtml);
   const old=cheerio.load(oldHtml);const oldText=clean(old('body').text());
   let profileHtml='';try{profileHtml=await(await get(profileUrl)).text();}catch{}
   const $=cheerio.load(profileHtml);
-  if(profileHtml)await fs.writeFile(path.join(root,'.tmp',athlete.id+'-profile.html'),profileHtml);
+  if(profileHtml&&cacheHtml)await fs.writeFile(path.join(root,'.tmp',athlete.id+'-profile.html'),profileHtml);
   function field(label){const li=$('li').toArray().find(e=>clean($(e).text()).startsWith(label)&&clean($(e).text()).length<200);return li?clean($(li).text()).slice(label.length).trim():'';}
   const birthday=field('Date of birth')||oldText.match(/Date of birth:\s*(\d{2}\.\d{2}\.\d{4})/)?.[1]||'';
   const skating=field('Start skating')||oldText.match(/Start sk\. \/ Club:\s*(\d{4})/)?.[1]||'';
-  const info={profileUrl:profileHtml?profileUrl:bioUrl,birthDate:birthday,startSkating:skating,club:field('Club'),profileVerifiedAt:'2026-11-04',highlights:[]};
+  const info={profileUrl:profileHtml?profileUrl:bioUrl,birthDate:birthday,startSkating:skating,club:field('Club')||oldText.match(/Start sk\. \/ Club:\s*\d{4}\s*\/\s*(.+?)(?=Internet \/ Social Media contact:)/)?.[1]?.trim()||'',profileVerifiedAt:verifiedAt,highlights:[]};
   const image=$('img').toArray().find(img=>clean($(img).attr('alt')).toLocaleLowerCase()===athlete.name.toLocaleLowerCase());
   if(image){
     const src=new URL($(image).attr('src'),profileUrl).href;
@@ -49,6 +49,9 @@ async function collect(athlete){
   // 无成年/青年锦标赛奖牌时，补充官方旧版档案中的大奖赛等前三名。
   for(const row of old('tr').toArray()){
     const cells=old(row).children('td').toArray().map(cell=>clean(old(cell).text())).filter(Boolean);
+    if(!info.personalBest&&cells[0]==='Personal Best Total Score'&&Number(cells[1])>0){
+      info.personalBest={score:Number(cells[1]),date:cells[2],event:cells[3]};
+    }
     for(let i=0;i<cells.length-2;i++){
       if(/^ISU\s+(?:JGP|GP|CS)\s/.test(cells[i])&&/^20\d{2}$/.test(cells[i+1])&&/^[123]\.?$/.test(cells[i+2]))info.highlights.push({season:cells[i+1],event:cells[i],rank:parseInt(cells[i+2]),source:bioUrl,priority:cells[i].startsWith('ISU GP ')?70:cells[i].startsWith('ISU JGP ')?60:50});
     }

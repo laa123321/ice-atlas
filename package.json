@@ -2,7 +2,7 @@
   "name": "ice-atlas",
   "version": "1.0.0",
   "private": true,
-  "description": "女子单人花样滑冰科普与交流平台 · 页面设计",
+  "description": "冰上图鉴 · 女单篇，女子单人花样滑冰专题网站",
   "scripts": {
     "start": "node server.js",
     "check": "node --check server.js && node --check src/app.js && node --check src/season.js && node --check src/isu-fetch.js && node --check src/local-mongo.js && node --check public/auth.js && node --check public/app.js && node --check public/learn.js && node --check public/season.js && node --check src/rankings.js && node --check public/rankings.js && node --check src/forum.js && node --check public/forum.js",

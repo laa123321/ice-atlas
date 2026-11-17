@@ -5,6 +5,8 @@ const COUNTRY_NAMES = {JPN:'日本',USA:'美国',CAN:'加拿大',CHN:'中国',KO
 const escapeText = text => String(text ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const groupName = group => group === 'junior' ? '青年组' : '成年组';
 const countryName = code => COUNTRY_NAMES[code] || code;
+const directoryCountry = code => /^AIN[12]?$/.test(code) ? 'AIN' : code;
+Object.assign(COUNTRY_NAMES,{AIN1:COUNTRY_NAMES.AIN,RUS:'俄罗斯',ROC:'俄罗斯奥委会'});
 function athleteHref(id) { return `#/athlete?id=${encodeURIComponent(id)}`; }
 function currentCalendarDay() { return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Singapore',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); }
 function eventStatus(event, day=currentCalendarDay()) {
@@ -104,14 +106,16 @@ function renderAthleteDirectory(route,raw) {
   const params=new URLSearchParams(raw.split('?')[1]||'');
   const group=params.get('group')==='junior'?'junior':'senior';
   const athletes=seasonSnapshot.athletes.filter(a=>a.groups.includes(group));
-  const countries=[...new Set(athletes.map(a=>a.country))].sort((a,b)=>countryName(a).localeCompare(countryName(b),'zh-CN'));
+  const countries=[...new Set(athletes.map(a=>directoryCountry(a.country)))].sort((a,b)=>countryName(a).localeCompare(countryName(b),'zh-CN'));
   const tabs=`<div class="ranking-tabs athlete-tabs" role="tablist" aria-label="选手组别">${[['senior','成年组','SENIOR WOMEN'],['junior','青年组','JUNIOR WOMEN']].map(([id,label,en])=>`<a id="athlete-tab-${id}" role="tab" href="#/skaters?group=${id}" aria-selected="${id===group}" aria-controls="athlete-panel" tabindex="${id===group?0:-1}">${label}<span>${en}</span></a>`).join('')}</div>`;
-  blankCanvas.innerHTML=`<p class="directory-description">仅收录获奖过的选手。</p><div class="directory-toolbar">${tabs}<div class="athlete-controls"><label class="search-label"><svg class="search-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input aria-label="查找选手" id="athlete-search" type="search" placeholder="输入姓名、花名或国家 / 地区" maxlength="80"></label><label class="select-label">国家 / 地区<select id="athlete-country"><option value="all">全部</option>${countries.map(c=>`<option value="${escapeText(c)}">${escapeText(countryName(c))}</option>`).join('')}</select></label><span id="athlete-count" role="status"></span></div></div><div id="athlete-panel" role="tabpanel" aria-labelledby="athlete-tab-${group}"><div id="athlete-grid" class="athlete-grid"></div></div>`;
+  blankCanvas.innerHTML=`<p class="directory-description">收录获奖选手及本赛季有 ISU 参赛记录的中立女单。</p><div class="directory-toolbar">${tabs}<div class="athlete-controls"><label class="search-label"><svg class="search-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input aria-label="查找选手" id="athlete-search" type="search" placeholder="输入姓名、花名或国家 / 地区" maxlength="80"></label><label class="select-label">国家 / 地区<select id="athlete-country"><option value="all">全部</option>${countries.map(c=>`<option value="${escapeText(c)}">${escapeText(countryName(c))}</option>`).join('')}</select></label><span id="athlete-count" role="status"></span></div></div><div id="athlete-panel" role="tabpanel" aria-labelledby="athlete-tab-${group}"><div id="athlete-grid" class="athlete-grid"></div></div>`;
   const input=document.querySelector('#athlete-search');input.value=params.get('q')||'';
-  const select=document.querySelector('#athlete-country');select.value=countries.includes(params.get('country'))?params.get('country'):'all';
+  const select=document.querySelector('#athlete-country');
+  const requestedCountry=directoryCountry(params.get('country'));
+  select.value=countries.includes(requestedCountry)?requestedCountry:'all';
   function update() {
     const q=input.value.trim().toLocaleLowerCase();
-    const filtered=athletes.filter(a=>(select.value==='all'||a.country===select.value)&&`${a.name} ${a.nickname||""} ${countryName(a.country)} ${a.country}`.toLocaleLowerCase().includes(q));
+    const filtered=athletes.filter(a=>(select.value==='all'||directoryCountry(a.country)===select.value)&&[a.name,a.nickname,countryName(a.country),a.country,...(a.searchNames||[])].join(' ').toLocaleLowerCase().includes(q));
     document.querySelector('#athlete-count').textContent=`${filtered.length} 位选手`;
     document.querySelector('#athlete-grid').innerHTML=filtered.length?filtered.map(athlete=>{
       return `<a class="athlete-card" href="${athleteHref(athlete.id)}">${athlete.photo?`<div class="athlete-card-photo"><img src="${escapeText(athlete.photo)}" alt="${escapeText(athlete.name)} 的 ISU 官方档案照片" loading="lazy" width="400" height="300"></div>`:`<div class="athlete-card-top"><span class="athlete-monogram" aria-hidden="true">${escapeText(athlete.name.split(' ').map(p=>p[0]).slice(0,2).join(''))}</span><span>${escapeText(athlete.country)}</span></div>`}<h3>${escapeText(athlete.name)}</h3><p class="athlete-card-country">${escapeText(countryName(athlete.country))}<span>${escapeText(athlete.country)}</span></p><p class="athlete-card-group">${groupName(group)} · 女子单人滑</p></a>`;
@@ -132,7 +136,7 @@ function renderCareerMedals(athlete) {
   const medals=athlete.careerMedals||[];
   if(!medals.length)return "";
   const labels={1:'金牌',2:'银牌',3:'铜牌'};
-  return `<section class="career-archive"><div class="values-heading"><h3>历年国际赛事奖牌记录</h3><span>${medals.length} 枚 · 成年组与青年组</span></div><p class="career-scope">按 ISU 生涯成绩档案归档：冬奥会、世锦赛、欧锦赛、四大洲、世青赛、大奖赛及总决赛、挑战者系列赛和其他国际赛事。仅列总成绩前三名，不计国内赛和单项小奖牌；赛事名称保留官方原文。</p>${medals.length?`<div class="profile-results-table"><table class="career-medals-table"><thead><tr><th scope="col">年份</th><th scope="col">赛事</th><th scope="col">组别</th><th scope="col">奖牌</th><th scope="col">代表</th></tr></thead><tbody>${medals.map(m=>`<tr><td>${m.year}</td><th scope="row">${seasonSource(m.source,escapeText(m.event))}</th><td>${groupName(m.group)}</td><td><span class="career-medal rank-${m.rank}">${labels[m.rank]} · 第 ${m.rank} 名</span></td><td>${escapeText(countryName(m.country||athlete.country))}</td></tr>`).join('')}</tbody></table></div>`:'<p class="career-scope">当前 ISU 生涯档案暂未列出符合条件的国际赛事奖牌。</p>'}<p class="learn-smallprint">年份取赛事官方名称中的年份；跨年总决赛以名称起始年归档。${seasonSource(athlete.careerSource,'查看 ISU 生涯成绩档案')}。此表为档案快照；本赛季已收录赛事的实时成绩见下表。</p></section>`;
+  return `<section class="career-archive"><div class="values-heading"><h3>历年国际赛事奖牌记录</h3><span>${medals.length} 枚 · 成年组与青年组</span></div><p class="career-scope">按 ISU 生涯成绩档案归档：冬奥会、世锦赛、欧锦赛、四大洲、世青赛、大奖赛及总决赛、挑战者系列赛和其他国际赛事。仅列总成绩前三名，不计国内赛和单项小奖牌；赛事名称保留官方原文。</p>${medals.length?`<div class="profile-results-table"><table class="career-medals-table"><thead><tr><th scope="col">年份</th><th scope="col">赛事</th><th scope="col">组别</th><th scope="col">奖牌</th><th scope="col">代表</th></tr></thead><tbody>${medals.map(m=>`<tr><td>${m.year}</td><th scope="row">${seasonSource(m.source,escapeText(m.event))}</th><td>${groupName(m.group)}</td><td><span class="career-medal rank-${m.rank}">${labels[m.rank]} · 第 ${m.rank} 名</span></td><td>${escapeText(countryName(m.country||athlete.country))}</td></tr>`).join('')}</tbody></table></div>`:'<p class="career-scope">当前 ISU 生涯档案暂未列出符合条件的国际赛事奖牌。</p>'}<p class="learn-smallprint">年份取赛事官方名称中的年份；跨年总决赛以名称起始年归档。${seasonSource(athlete.careerSource,'查看 ISU 生涯成绩档案')}。</p></section>`;
 }
 function bindCareerFilters() {
  const archive=document.querySelector('.career-archive');if(!archive)return;
@@ -151,18 +155,34 @@ function renderAthlete(raw) {
   const group=athlete.groups.includes('senior')?'senior':'junior';
   document.querySelector('#section-title').textContent='选手简介';document.querySelector('#breadcrumb-label').textContent='选手简介';
   document.querySelector('.nav-inner>a[href="#/skaters"]').setAttribute('aria-current','page');
-  document.title=`${athlete.name} · 选手简介 · 冰上图鉴`;
+  document.title=`${athlete.name} · 选手简介 · ${siteTitle}`;
   const records=seasonSnapshot.events.flatMap(event=>{const result=event.podium?.find(p=>p.athleteId===id);return result?[{event,result}]:[];}).sort((a,b)=>b.event.start.localeCompare(a.event.start));
   const birthday=athlete.birthDate?athlete.birthDate.replace(/(\d{2})\.(\d{2})\.(\d{4})/,'$3年$2月$1日'):'';
   const identity=athlete.country.startsWith('AIN')?'以中立个人运动员身份参赛的女子单人滑选手':`${countryName(athlete.country)}的女子单人滑选手`;
-  const introduction=`${athlete.name} 是${identity}${birthday?'，出生于'+birthday:''}。${athlete.startSkating&&/^\d{4}$/.test(athlete.startSkating)?athlete.startSkating+'年开始滑冰。':''}${athlete.highlights?.[0]?`其代表成绩包括 ${athlete.highlights[0].season} 赛季${athlete.highlights[0].event}第 ${athlete.highlights[0].rank} 名。`:''}`;
+  const introduction=athlete.introduction||`${athlete.name} 是${identity}${birthday?'，出生于'+birthday:''}。${athlete.startSkating&&/^\d{4}$/.test(athlete.startSkating)?athlete.startSkating+'年开始滑冰。':''}${athlete.highlights?.[0]?`其代表成绩包括 ${athlete.highlights[0].season} 赛季${athlete.highlights[0].event}第 ${athlete.highlights[0].rank} 名。`:''}`;
   blankCanvas.innerHTML=`<a class="profile-back" href="#/skaters?group=${group}">← 返回${groupName(group)}选手图鉴</a><div class="athlete-profile"><figure class="profile-portrait">${athlete.photo?`<img src="${escapeText(athlete.photo)}" alt="${escapeText(athlete.name)} 的 ISU 官方档案照片" width="500" height="650">`:`<div class="profile-symbol" aria-hidden="true">${escapeText(athlete.name.split(' ').map(p=>p[0]).slice(0,2).join(''))}</div>`}${athlete.photoSource?`<figcaption>${seasonSource(athlete.photoSource,'照片来源：ISU 官方档案')}</figcaption>`:''}</figure><div><p class="eyebrow">${seasonSnapshot.season} / WOMEN'S SINGLE SKATING</p><h2>${escapeText(athlete.name)}</h2><p class="profile-meta">${escapeText(countryName(athlete.country))} · ${athlete.groups.map(groupName).join(' / ')} · 女子单人滑</p><p class="profile-description">${escapeText(introduction)}</p><dl class="profile-facts">${athlete.nickname?`<div><dt>冰迷花名</dt><dd>${escapeText(athlete.nickname)}</dd></div>`:""}${athlete.birthDate?`<div><dt>出生日期</dt><dd>${escapeText(athlete.birthDate)}</dd></div>`:''}${athlete.startSkating?`<div><dt>开始滑冰</dt><dd>${escapeText(athlete.startSkating)}</dd></div>`:''}${athlete.club?`<div><dt>俱乐部</dt><dd>${escapeText(athlete.club)}</dd></div>`:''}</dl>${athlete.personalBest?`<div class="profile-best"><span>ISU 档案个人最佳总分</span><strong>${Number(athlete.personalBest.score).toFixed(2)}</strong><small>${escapeText(athlete.personalBest.event)} · ${escapeText(athlete.personalBest.date)}</small></div>`:''}${seasonSource(athlete.profileUrl||athlete.bioUrl,'ISU 官方个人档案')}</div></div>${athlete.highlights?.length?`<section class="career-highlights"><div class="values-heading"><h3>代表成绩</h3><span>不限于本赛季</span></div><div class="career-grid">${athlete.highlights.map(highlight=>`<article><span>${escapeText(highlight.season)}</span><h4>${escapeText(highlight.event)}</h4><p>第 <strong>${highlight.rank}</strong> 名</p>${seasonSource(highlight.source,'ISU 档案依据')}</article>`).join('')}</div></section>`:''}${renderCareerMedals(athlete)}${records.length?`<section class="profile-results"><div class="values-heading"><h3>本赛季已收录成绩</h3><a href="#/events">查看全部赛事 ↗</a></div><div class="profile-results-table"><table><thead><tr><th scope="col">日期</th><th scope="col">赛事</th><th scope="col">名次</th><th scope="col">总分</th><th scope="col">来源</th></tr></thead><tbody>${records.map(({event,result})=>`<tr><td>${event.start}</td><th scope="row"><a href="#/events?event=${escapeText(event.id)}">${escapeText(event.name)} ↗</a></th><td>第 ${result.place} 名</td><td>${result.score!=null?Number(result.score).toFixed(2):'尚未读取'}</td><td>${seasonSource(event.source,'官方成绩')}</td></tr>`).join('')}</tbody></table></div><p class="learn-smallprint">历史代表成绩与基本资料依据 ISU 官方档案。本季表格仅列已收录赛事的领奖台，组别按本季参赛记录归类。</p></section>`:""}`;
 }
 setInterval(()=>{
   if(document.hidden||!['/events','/skaters','/athlete'].includes(currentRoute))return;
-  loadSeason(true).then(()=>{
+  const hash=location.hash;
+  const id=new URLSearchParams(hash.split('?')[1]).get('id');
+  const profile=snapshot=>snapshot?.athletes.find(athlete=>athlete.id===id);
+  const previous=JSON.stringify(profile(seasonSnapshot));
+  loadSeason(true).then(snapshot=>{
+    if(location.hash!==hash)return;
     if(currentRoute==='/events'){
-      const y=window.scrollY;renderEvents(location.hash.slice(1));window.scrollTo(0,y);
+      const y=window.scrollY;renderEvents(hash.slice(1));window.scrollTo(0,y);
+    } else if(currentRoute==='/athlete'&&previous!==JSON.stringify(profile(snapshot))){
+      const year=document.querySelector('.career-controls select')?.value;
+      const y=window.scrollY;
+      renderAthlete(hash.slice(1));
+      bindCareerFilters();
+      const filter=document.querySelector('.career-controls select');
+      if(filter && year && Array.from(filter.options).some(option=>option.value===year)){
+        filter.value=year;
+        filter.dispatchEvent(new Event('change'));
+      }
+      window.scrollTo(0,y);
     }
   }).catch(()=>{});
 },60000);

@@ -4,7 +4,7 @@
     "birthDate": "07.08.2009",
     "startSkating": "",
     "club": "",
-    "profileVerifiedAt": "2026-11-04",
+    "profileVerifiedAt": "2026-11-09",
     "highlights": [],
     "photo": "assets/athletes/sofiia-dzepka.jpg",
     "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/sofiia-dzepka/",
@@ -35,7 +35,7 @@
       }
     ],
     "careerSource": "https://results.isu.org/bios/isufs_cr_00121726.htm",
-    "careerVerifiedAt": "2026-11-05"
+    "careerVerifiedAt": "2026-11-09"
   },
   "yuxuan-liu": {
     "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/yuxuan-liu/",
@@ -2357,7 +2357,7 @@
     "birthDate": "08.05.2003",
     "startSkating": "",
     "club": "",
-    "profileVerifiedAt": "2026-11-04",
+    "profileVerifiedAt": "2026-11-09",
     "highlights": [
       {
         "season": "2021",
@@ -2458,7 +2458,7 @@
       }
     ],
     "careerSource": "https://results.isu.org/bios/isufs_cr_00105615.htm",
-    "careerVerifiedAt": "2026-11-05"
+    "careerVerifiedAt": "2026-11-09"
   },
   "olga-mikutina": {
     "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/olga-mikutina/",
@@ -6907,5 +6907,605 @@
     ],
     "careerSource": "https://results.isu.org/bios/isufs_cr_00110306.htm",
     "careerVerifiedAt": "2026-11-05"
+  },
+  "anna-frolova": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/anna-frolova/",
+    "birthDate": "07.08.2005",
+    "startSkating": "2009",
+    "club": "Saint Petersburg Figure Skating Academy",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [
+      {
+        "season": "2026",
+        "event": "ISU CS Kinoshita Group Cup 2026, Tokyo",
+        "rank": 3,
+        "source": "https://results.isu.org/bios/isufs00107992.htm"
+      },
+      {
+        "season": "2026",
+        "event": "ISU CS Trialeti Trophy 2026, Batumi",
+        "rank": 3,
+        "source": "https://results.isu.org/bios/isufs00107992.htm"
+      }
+    ],
+    "photo": "assets/athletes/anna-frolova.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/anna-frolova/",
+    "photoCredit": "ISU 官方选手档案",
+    "personalBest": {
+      "event": "ISU CS Kinoshita Group Cup 2026",
+      "date": "06.09.2026",
+      "score": 207.86
+    },
+    "careerMedals": [
+      {
+        "year": 2026,
+        "event": "ISU CS Kinoshita Group Cup 2026",
+        "group": "senior",
+        "rank": 3,
+        "category": "ISU Challenger Series",
+        "country": "",
+        "source": "https://results.isu.org/bios/isufs_cr_00107992.htm"
+      },
+      {
+        "year": 2026,
+        "event": "ISU CS Trialeti Trophy 2026",
+        "group": "senior",
+        "rank": 3,
+        "category": "ISU Challenger Series",
+        "country": "",
+        "source": "https://results.isu.org/bios/isufs_cr_00107992.htm"
+      },
+      {
+        "year": 2020,
+        "event": "Winter Youth Olympic Games 2020",
+        "group": "junior",
+        "rank": 3,
+        "category": "International Competition",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00107992.htm"
+      },
+      {
+        "year": 2019,
+        "event": "ISU JGP Egna/Neumarkt 2019",
+        "group": "junior",
+        "rank": 2,
+        "category": "ISU Junior Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00107992.htm"
+      },
+      {
+        "year": 2019,
+        "event": "ISU JGP Croatia Cup 2019",
+        "group": "junior",
+        "rank": 3,
+        "category": "ISU Junior Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00107992.htm"
+      }
+    ],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00107992.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "alina-gorbacheva": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/alina-gorbacheva/",
+    "birthDate": "23.07.2007",
+    "startSkating": "2014",
+    "club": "FS Sport School Triumph",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [
+      {
+        "season": "2026",
+        "event": "ISU CS Budapest Trophy 2026, Budapest",
+        "rank": 1,
+        "source": "https://results.isu.org/bios/isufs00111206.htm"
+      }
+    ],
+    "photo": "assets/athletes/alina-gorbacheva.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/alina-gorbacheva/",
+    "photoCredit": "ISU 官方选手档案",
+    "personalBest": {
+      "event": "ISU CS Budapest Trophy 2026",
+      "date": "18.10.2026",
+      "score": 203.35
+    },
+    "careerMedals": [
+      {
+        "year": 2026,
+        "event": "ISU CS Budapest Trophy 2026",
+        "group": "senior",
+        "rank": 1,
+        "category": "ISU Challenger Series",
+        "country": "",
+        "source": "https://results.isu.org/bios/isufs_cr_00111206.htm"
+      }
+    ],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00111206.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "alexandra-ignatova": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/alexandra-ignatova/",
+    "birthDate": "23.06.2004",
+    "startSkating": "2008",
+    "club": "FS Sports Club of Eteri Tutberidze",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [
+      {
+        "season": "2021/22",
+        "event": "北京冬奥会",
+        "rank": 2,
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "season": "2020/21",
+        "event": "世界锦标赛",
+        "rank": 3,
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "season": "2018/19",
+        "event": "世界青年锦标赛",
+        "rank": 1,
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "season": "2017/18",
+        "event": "世界青年锦标赛",
+        "rank": 1,
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "season": "2026/27",
+        "event": "大奖赛·中国站",
+        "rank": 2,
+        "source": "https://results.isu.org/results/season2627/gpchn2026/CAT002RS.htm"
+      }
+    ],
+    "photo": "assets/athletes/alexandra-ignatova.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/alexandra-ignatova/",
+    "photoCredit": "ISU 官方选手档案",
+    "personalBest": {
+      "event": "XXIV Olympic Winter Games 2022",
+      "date": "17.02.2022",
+      "score": 251.73
+    },
+    "searchNames": [
+      "Alexandra Trusova",
+      "亚历山德拉·特鲁索娃",
+      "伊格纳托娃",
+      "莎莎"
+    ],
+    "introduction": "亚历山德拉·伊格纳托娃（Alexandra Ignatova，原姓特鲁索娃）是北京冬奥会女单银牌得主和两届世青赛冠军。她是首位在比赛中完成勾手四周跳和后外点冰四周跳的女单选手。本赛季她以中立个人运动员身份重返国际赛场。",
+    "careerMedals": [
+      {
+        "year": 2026,
+        "event": "ISU CS Denis Ten Memorial 2026",
+        "group": "senior",
+        "rank": 1,
+        "category": "ISU Challenger Series",
+        "country": "AIN2",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2026,
+        "event": "ISU CS Kinoshita Group Cup 2026",
+        "group": "senior",
+        "rank": 2,
+        "category": "ISU Challenger Series",
+        "country": "AIN2",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2026,
+        "event": "ISU GP Cup of China 2026",
+        "group": "senior",
+        "rank": 2,
+        "category": "ISU Grand Prix",
+        "country": "AIN2",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2022,
+        "event": "ISU European Championships 2022",
+        "group": "senior",
+        "rank": 2,
+        "category": "European Championships",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2022,
+        "event": "XXIV Olympic Winter Games 2022",
+        "group": "senior",
+        "rank": 2,
+        "category": "Olympic Games",
+        "country": "ROC",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2021,
+        "event": "2021 U.S. International Figure Skating Classic",
+        "group": "senior",
+        "rank": 1,
+        "category": "International Competition",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2021,
+        "event": "ISU GP Guaranteed Rate Skate America 2021",
+        "group": "senior",
+        "rank": 1,
+        "category": "ISU Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2021,
+        "event": "ISU World Championships 2021",
+        "group": "senior",
+        "rank": 3,
+        "category": "World Championships",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2020,
+        "event": "ISU European Championships 2020",
+        "group": "senior",
+        "rank": 3,
+        "category": "European Championships",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2019,
+        "event": "ISU CS 27th Nepela Memorial 2019",
+        "group": "senior",
+        "rank": 1,
+        "category": "ISU Challenger Series",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2019,
+        "event": "ISU GP Rostelecom Cup 2019",
+        "group": "senior",
+        "rank": 1,
+        "category": "ISU Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2019,
+        "event": "ISU GP Skate Canada International 2019",
+        "group": "senior",
+        "rank": 1,
+        "category": "ISU Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2019,
+        "event": "ISU World Junior Championships 2019",
+        "group": "junior",
+        "rank": 1,
+        "category": "World Junior Championships",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2019,
+        "event": "ISU Grand Prix Final 2019/2020",
+        "group": "senior",
+        "rank": 3,
+        "category": "ISU Grand Prix Final / ISU Junior Grand Prix Final",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2018,
+        "event": "ISU JGP Amber Cup 2018",
+        "group": "junior",
+        "rank": 1,
+        "category": "ISU Junior Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2018,
+        "event": "ISU JGP Armenian Cup 2018",
+        "group": "junior",
+        "rank": 1,
+        "category": "ISU Junior Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2018,
+        "event": "ISU World Junior Championships 2018",
+        "group": "junior",
+        "rank": 1,
+        "category": "World Junior Championships",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2018,
+        "event": "ISU Junior Grand Prix Final 2018/19",
+        "group": "junior",
+        "rank": 2,
+        "category": "ISU Grand Prix Final / ISU Junior Grand Prix Final",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2017,
+        "event": "ISU JGP Brisbane 2017",
+        "group": "junior",
+        "rank": 1,
+        "category": "ISU Junior Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/events/cat03108160.htm"
+      },
+      {
+        "year": 2017,
+        "event": "ISU JGP Minsk Arena Cup 2017",
+        "group": "junior",
+        "rank": 1,
+        "category": "ISU Junior Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      },
+      {
+        "year": 2017,
+        "event": "ISU Junior Grand Prix Final 2017/18",
+        "group": "junior",
+        "rank": 1,
+        "category": "ISU Grand Prix Final / ISU Junior Grand Prix Final",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00102760.htm"
+      }
+    ],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00102760.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "adeliia-petrosian": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/adeliia-petrosian/",
+    "birthDate": "05.06.2007",
+    "startSkating": "2011",
+    "club": "Moscow Academy of Figure Skating",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [
+      {
+        "season": "2026",
+        "event": "ISU CS Trialeti Trophy 2026, Batumi",
+        "rank": 2,
+        "source": "https://results.isu.org/bios/isufs00111203.htm"
+      }
+    ],
+    "photo": "assets/athletes/adeliia-petrosian.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/adeliia-petrosian/",
+    "photoCredit": "ISU 官方选手档案",
+    "personalBest": {
+      "event": "Olympic Winter Games 2026 Figure Skating",
+      "date": "19.02.2026",
+      "score": 214.53
+    },
+    "careerMedals": [
+      {
+        "year": 2026,
+        "event": "ISU CS Trialeti Trophy 2026",
+        "group": "senior",
+        "rank": 2,
+        "category": "ISU Challenger Series",
+        "country": "",
+        "source": "https://results.isu.org/bios/isufs_cr_00111203.htm"
+      },
+      {
+        "year": 2025,
+        "event": "ISU Skate to Milano Figure Skating Qualifier 2025 – Beijing",
+        "group": "senior",
+        "rank": 1,
+        "category": "International Competition",
+        "country": "",
+        "source": "https://results.isu.org/bios/isufs_cr_00111203.htm"
+      },
+      {
+        "year": 2021,
+        "event": "ISU JGP Ljubljana Cup 2021",
+        "group": "junior",
+        "rank": 1,
+        "category": "ISU Junior Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00111203.htm"
+      },
+      {
+        "year": 2021,
+        "event": "ISU JGP Kosice 2021",
+        "group": "junior",
+        "rank": 3,
+        "category": "ISU Junior Grand Prix",
+        "country": "RUS",
+        "source": "https://results.isu.org/bios/isufs_cr_00111203.htm"
+      }
+    ],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00111203.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "dina-khusnutdinova": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/dina-khusnutdinova/",
+    "birthDate": "17.04.2009",
+    "startSkating": "",
+    "club": "Figure Skating Center of Eteri Tutberidze",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [],
+    "photo": "assets/athletes/dina-khusnutdinova.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/dina-khusnutdinova/",
+    "photoCredit": "ISU 官方选手档案",
+    "personalBest": {
+      "event": "ISU CS Denis Ten Memorial 2026",
+      "date": "09.10.2026",
+      "score": 185.7
+    },
+    "careerMedals": [],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00124307.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "kamilla-neliubova": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/kamilla-neliubova/",
+    "birthDate": "14.08.2008",
+    "startSkating": "2013",
+    "club": "Sports School No. 4",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [],
+    "photo": "assets/athletes/kamilla-neliubova.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/kamilla-neliubova/",
+    "photoCredit": "ISU 官方选手档案",
+    "personalBest": {
+      "event": "ISU CS Kinoshita Group Cup 2026",
+      "date": "06.09.2026",
+      "score": 201.34
+    },
+    "careerMedals": [],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00126918.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "mariya-evtukhina": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/mariya-evtukhina/",
+    "birthDate": "12.02.2013",
+    "startSkating": "",
+    "club": "",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [],
+    "photo": "assets/athletes/mariya-evtukhina.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/mariya-evtukhina/",
+    "photoCredit": "ISU 官方选手档案",
+    "careerMedals": [],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00126739.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "yaraslava-kniazeva": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/yaraslava-kniazeva/",
+    "birthDate": "01.04.2013",
+    "startSkating": "",
+    "club": "",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [],
+    "photo": "assets/athletes/yaraslava-kniazeva.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/yaraslava-kniazeva/",
+    "photoCredit": "ISU 官方选手档案",
+    "careerMedals": [],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00126684.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "varvara-stahovich": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/varvara-stahovich/",
+    "birthDate": "25.02.2013",
+    "startSkating": "",
+    "club": "",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [],
+    "photo": "assets/athletes/varvara-stahovich.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/varvara-stahovich/",
+    "photoCredit": "ISU 官方选手档案",
+    "personalBest": {
+      "event": "ISU JGP Bangkok 2026",
+      "date": "04.09.2026",
+      "score": 183.35
+    },
+    "careerMedals": [],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00126668.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "mariia-zakharova": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/mariia-zakharova/",
+    "birthDate": "21.09.2007",
+    "startSkating": "2011",
+    "club": "Sambo 70 (Khrustalni), Moscow",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [],
+    "photo": "assets/athletes/mariia-zakharova.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/mariia-zakharova/",
+    "photoCredit": "ISU 官方选手档案",
+    "personalBest": {
+      "event": "ISU JGP Kosice 2021",
+      "date": "04.09.2021",
+      "score": 190.33
+    },
+    "careerMedals": [],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00111217.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "alena-prineva": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/alena-prineva/",
+    "birthDate": "12.11.2010",
+    "startSkating": "",
+    "club": "Figure Skating Center of Eteri Tutberidze",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [],
+    "photo": "assets/athletes/alena-prineva.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/alena-prineva/",
+    "photoCredit": "ISU 官方选手档案",
+    "careerMedals": [
+      {
+        "year": 2026,
+        "event": "Denis Ten Memorial 2026",
+        "group": "junior",
+        "rank": 3,
+        "category": "International Competition",
+        "country": "",
+        "source": "https://results.isu.org/bios/isufs_cr_00121760.htm"
+      }
+    ],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00121760.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "viktoriia-streltsova": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/viktoriia-streltsova/",
+    "birthDate": "21.05.2012",
+    "startSkating": "",
+    "club": "Figure Skating Center of Eteri Tutberidze",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [],
+    "photo": "assets/athletes/viktoriia-streltsova.png",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/viktoriia-streltsova/",
+    "photoCredit": "ISU 官方选手档案",
+    "careerMedals": [
+      {
+        "year": 2026,
+        "event": "Denis Ten Memorial 2026",
+        "group": "junior",
+        "rank": 2,
+        "category": "International Competition",
+        "country": "",
+        "source": "https://results.isu.org/bios/isufs_cr_00123562.htm"
+      }
+    ],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00123562.htm",
+    "careerVerifiedAt": "2026-11-09"
+  },
+  "alisa-zaikina": {
+    "profileUrl": "https://www.isu-skating.com/en/figure-skating/skaters/alisa-zaikina/",
+    "birthDate": "16.03.2013",
+    "startSkating": "",
+    "club": "Moscow Olympic School",
+    "profileVerifiedAt": "2026-11-09",
+    "highlights": [],
+    "photo": "assets/athletes/alisa-zaikina.jpg",
+    "photoSource": "https://www.isu-skating.com/en/figure-skating/skaters/alisa-zaikina/",
+    "photoCredit": "ISU 官方选手档案",
+    "careerMedals": [
+      {
+        "year": 2026,
+        "event": "Denis Ten Memorial 2026",
+        "group": "junior",
+        "rank": 1,
+        "category": "International Competition",
+        "country": "",
+        "source": "https://results.isu.org/bios/isufs_cr_00126167.htm"
+      }
+    ],
+    "careerSource": "https://results.isu.org/bios/isufs_cr_00126167.htm",
+    "careerVerifiedAt": "2026-11-09"
   }
 }

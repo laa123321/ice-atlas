@@ -296,9 +296,25 @@
       "start": "2026-11-06",
       "end": "2026-11-08",
       "resultIndex": "https://results.isu.org/results/season2627/gpchn2026/",
-      "source": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
-      "scheduleSource": "https://www.isu.org/en/news/ready-set-skate-your-guide-to-the-202627-isu-figure-skating-grand-prix-season",
-      "podium": []
+      "source": "https://results.isu.org/results/season2627/gpchn2026/CAT002RS.htm",
+      "scheduleSource": "https://results.isu.org/results/season2627/gpchn2026/",
+      "podium": [
+        {
+          "place": 1,
+          "score": 224.48,
+          "athleteId": "mone-chiba"
+        },
+        {
+          "place": 2,
+          "score": 221.27,
+          "athleteId": "alexandra-ignatova"
+        },
+        {
+          "place": 3,
+          "score": 210.79,
+          "athleteId": "haein-lee"
+        }
+      ]
     },
     {
       "id": "gpusa2026",

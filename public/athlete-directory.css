@@ -2,7 +2,7 @@
 body.atlas-directory-page{background:#f7f9fb}
 .atlas-directory-page #section-view{padding-top:20px}
 .atlas-directory-page .breadcrumb{margin-bottom:18px;color:#617b8e}
-.atlas-directory-page #section-eyebrow,.atlas-directory-page .section-number{display:none}
+.atlas-directory-page #section-eyebrow{display:none}
 .atlas-directory-page .page-title-row{padding-bottom:0;border:0}
 .atlas-directory-page #section-title{color:#20394f;font-size:34px;line-height:1.45;letter-spacing:0}
 .atlas-directory-page .season-content{padding-top:8px}
@@ -35,11 +35,11 @@ body.atlas-directory-page{background:#f7f9fb}
 @media(prefers-reduced-motion:reduce){.atlas-directory-page .athlete-card{transition:none}.atlas-directory-page .athlete-card:hover{transform:none}}
 /* 国家下拉框一次约显示 9 项，其余选项在菜单内滚动。保留原生选择与键盘交互。 */
 @supports (appearance:base-select){
-  #athlete-country,#athlete-country::picker(select){appearance:base-select}
-  .atlas-directory-page #athlete-country{min-inline-size:160px;background-image:none;padding:10px 12px;gap:16px}
-  #athlete-country::picker(select){max-block-size:min(298px,50dvh);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 0;border:1px solid #d8e3eb;border-radius:4px;background:#fff;color:#456479;box-shadow:0 5px 16px #20394f14}
-  #athlete-country option{min-block-size:32px;padding:6px 12px;font-family:inherit;line-height:20px;font-size:14px;gap:8px}
-  #athlete-country option:hover,#athlete-country option:focus-visible{background:#e7f0f6;color:#20394f}
-  #athlete-country option:checked{background:#4565bd;color:#fff}
+  :is(#athlete-country,#ranking-country),:is(#athlete-country,#ranking-country)::picker(select){appearance:base-select}
+  :is(.atlas-directory-page #athlete-country,.rankings-compact-page #ranking-country){min-inline-size:160px;background-image:none;padding:10px 12px;gap:16px}
+  :is(#athlete-country,#ranking-country)::picker(select){max-block-size:min(298px,50dvh);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 0;border:1px solid #d8e3eb;border-radius:4px;background:#fff;color:#456479;box-shadow:0 5px 16px #20394f14}
+  :is(#athlete-country,#ranking-country) option{min-block-size:32px;padding:6px 12px;font-family:inherit;line-height:20px;font-size:14px;gap:8px}
+  :is(#athlete-country,#ranking-country) option:hover,:is(#athlete-country,#ranking-country) option:focus-visible{background:#e7f0f6;color:#20394f}
+  :is(#athlete-country,#ranking-country) option:checked{background:#4565bd;color:#fff}
 }
-#athlete-country option::checkmark{display:none}
+:is(#athlete-country,#ranking-country) option::checkmark{display:none}

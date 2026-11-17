@@ -1,9 +1,15 @@
 const cheerio = require('cheerio');
+const fs = require('node:fs/promises');
+const path = require('node:path');
 const seed = require('../data/season-seed.json');
 const {isuFetch}=require('./isu-fetch');
 const {mergeAthletes}=require('./athletes');
+const {parseCareerMedals,parseBio}=require('./athlete-archive');
 const eventPhotos=require('../data/event-photos.json');
+const eventPhotoFile=path.join(__dirname,'../data/event-photos.json');
+const verifiedEvents=new Map(seed.events.filter(event=>event.podium.length===3).map(event=>[event.id,event]));
 const SYNC_INTERVAL = 6 * 60 * 60 * 1000;
+const ARCHIVE_INTERVAL = 24 * 60 * 60 * 1000;
 const clean = text => String(text || '').replace(/\s+/g, ' ').trim();
 const athleteId = name => clean(name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 function approvedUrl(value, base) {
@@ -54,8 +60,17 @@ async function createSeasonService({ db, enabled = true, fetcher = isuFetch }) {
   let stopped = false;
   const controllers = new Set();
   async function read() {
-    const snapshot = await collection.findOne({ _id: seed.season }, { projection: { _id: 0 } });
-    return { ...snapshot, events:snapshot.events.map(event=>({...event,...(eventPhotos[event.id]||{})})), athletes:mergeAthletes(snapshot.athletes), syncing: running, nextSyncAt: snapshot.lastAttemptAt ? new Date(Date.parse(snapshot.lastAttemptAt) + SYNC_INTERVAL).toISOString() : null };
+    const [stored,photos]=await Promise.all([
+      collection.findOne({ _id: seed.season }, { projection: { _id: 0 } }),
+      fs.readFile(eventPhotoFile,'utf8').then(JSON.parse).catch(()=>eventPhotos)
+    ]);
+    const { athleteArchives = {}, ...snapshot } = stored;
+    const events=snapshot.events.map(event=>{
+      const verified=verifiedEvents.get(event.id);
+      const result=verified&&event.podium?.length!==3 ? {podium:verified.podium,source:verified.source} : {};
+      return {...event,...result,...photos?.[event.id]};
+    });
+    return { ...snapshot, events, athletes:mergeAthletes(snapshot.athletes, athleteArchives), syncing: running, nextSyncAt: snapshot.lastAttemptAt ? new Date(Date.parse(snapshot.lastAttemptAt) + SYNC_INTERVAL).toISOString() : null };
   }
   async function getHtml(url) {
     approvedUrl(url, url);
@@ -71,12 +86,47 @@ async function createSeasonService({ db, enabled = true, fetcher = isuFetch }) {
       return html;
     } finally { clearTimeout(timeout); controllers.delete(controller); }
   }
+  async function syncArchives(athletes, recentPodiums) {
+    const { athleteArchives = {} } = await collection.findOne({ _id: seed.season }, { projection: { athleteArchives: 1 } });
+    const now = Date.now();
+    const queue = athletes.filter(({id}) => recentPodiums.has(id) ||
+      now - (Date.parse(athleteArchives[id]?.checkedAt) || 0) >= ARCHIVE_INTERVAL);
+    let cursor = 0;
+    await Promise.all(Array.from({ length: 3 }, async () => {
+      while (!stopped && cursor < queue.length) {
+        const athlete = queue[cursor++];
+        const id = athlete.bioUrl?.match(/\/bios\/isufs(\d+)\.htm$/i)?.[1];
+        if (!id || !/^[a-z0-9-]+$/.test(athlete.id)) continue;
+        const bio = 'https://results.isu.org/bios/isufs' + id + '.htm';
+        const careerSource = bio.replace('/isufs', '/isufs_cr_');
+        const fields = {};
+        try {
+          const html = await getHtml(bio);
+          if (html) Object.assign(fields, parseBio(html));
+        } catch { /* Keep the last successful bio. */ }
+        try {
+          const html = await getHtml(careerSource);
+          if (html && /Competition Results/i.test(html)) {
+            fields.careerMedals = parseCareerMedals(html, careerSource);
+            fields.careerSource = careerSource;
+          }
+        } catch { /* Keep the last successful career archive. */ }
+        if (stopped || !Object.keys(fields).length) continue;
+        if (fields.personalBest && fields.careerMedals) fields.checkedAt = new Date(now).toISOString();
+        const patch = {};
+        for (const [key,value] of Object.entries(fields)) patch['athleteArchives.' + athlete.id + '.' + key] = value;
+        await collection.updateOne({ _id: seed.season }, { $set: patch });
+      }
+    }));
+    if (!stopped) await collection.updateOne({ _id: seed.season }, { $set: { archiveAttemptAt: new Date(now).toISOString() } });
+  }
   async function sync() {
     if (running || stopped) return;
     running = true;
     try {
       const snapshot = await read();
       const athletes = new Map(snapshot.athletes.map(a=>[a.id,a]));
+      const recentPodiums = new Set();
       let successes = 0; const failures = [];
       const events = structuredClone(snapshot.events);
       let cursor = 0;
@@ -95,11 +145,15 @@ async function createSeasonService({ db, enabled = true, fetcher = isuFetch }) {
             const finalHtml = await getHtml(info.resultUrl);
             const podium = finalHtml ? parseFinalResult(finalHtml,event) : [];
             if (podium.length !== 3) continue;
+            const previousPodium = JSON.stringify(event.podium);
             event.podium = podium.map(({place,score,athlete})=>{
               const previous = athletes.get(athlete.id);
               athletes.set(athlete.id,{...previous,...athlete,groups:[...new Set([...(previous?.groups||[]),...athlete.groups])]});
               return {place,score,athleteId:athlete.id};
             });
+            if (JSON.stringify(event.podium) !== previousPodium) {
+              event.podium.forEach(result => recentPodiums.add(result.athleteId));
+            }
             event.source = info.resultUrl; event.verifiedAt = new Date().toISOString();
           } catch { failures.push(event.id); }
         }
@@ -109,6 +163,7 @@ async function createSeasonService({ db, enabled = true, fetcher = isuFetch }) {
       const update = { lastAttemptAt: now, syncState: successes ? (failures.length ? 'partial' : 'ok') : 'unavailable', failedEvents: failures };
       if (successes) Object.assign(update,{events,athletes:[...athletes.values()],syncedAt:now});
       await collection.updateOne({_id:seed.season},{$set:update});
+      await syncArchives([...athletes.values()], recentPodiums);
     } finally { running = false; }
   }
   let kickoff, timer;
@@ -118,7 +173,7 @@ async function createSeasonService({ db, enabled = true, fetcher = isuFetch }) {
       await sync().catch(()=>console.error('赛事同步未完成，将保留缓存。'));
       if (!stopped) { timer=setTimeout(run,SYNC_INTERVAL);timer.unref(); }
     };
-    const wait = cached.lastAttemptAt ? Math.max(200,SYNC_INTERVAL-(Date.now()-Date.parse(cached.lastAttemptAt))) : 200;
+    const wait = cached.archiveAttemptAt && cached.lastAttemptAt ? Math.max(200,SYNC_INTERVAL-(Date.now()-Date.parse(cached.lastAttemptAt))) : 200;
     kickoff=setTimeout(run,wait);kickoff.unref();
   }
   return { read, sync, stop() { stopped=true; clearTimeout(kickoff); clearInterval(timer); for(const controller of controllers) controller.abort(); } };

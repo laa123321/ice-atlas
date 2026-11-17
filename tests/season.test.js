@@ -5,6 +5,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {MongoClient}=require('mongodb');
 const {parseEventIndex,parseFinalResult,createSeasonService}=require('../src/season');
+const {profileIds}=require('../src/athletes');
 const {ensureLocalMongo}=require('../src/local-mongo');
 const seed=require('../data/season-seed.json');
 const event=seed.events.find(e=>e.id==='gpfra2026');
@@ -25,7 +26,7 @@ test('ISU 分类链接、嵌套国旗表格和最终成绩解析',()=>{
 });
 test('赛事、选手跳转、图示文件与 24 个跳跃分值一致',()=>{
   assert.equal(seed.events.length,19);assert.equal(seed.athletes.length,18);
-  const ids=new Set(seed.athletes.map(a=>a.id));
+  const ids=new Set(profileIds);
   for(const e of seed.events)for(const p of e.podium)assert.ok(ids.has(p.athleteId));
   const source=fs.readFileSync(path.join(__dirname,'../public/learn.js'),'utf8');
   const data=vm.runInNewContext(source+'\n({j:JUMP_KNOWLEDGE,s:SPIN_KNOWLEDGE,t:STEP_KNOWLEDGE})');
@@ -44,10 +45,16 @@ test('真实 MongoDB 同步缓存：新赛果写入、失败保留已验证结�
     let fail=false;
     service=await createSeasonService({db,enabled:false,fetcher:async url=>{
       if(fail)throw new Error('offline');
-      return {status:200,ok:true,url,text:async()=>url.endsWith('RS.htm')?finalHtml:indexHtml};
+      let body = url.endsWith('RS.htm') ? finalHtml : indexHtml;
+      if (url.endsWith('isufs00100000.htm')) body = '<table><tr><td>Personal Best Total Score</td><td>236.81</td><td>15.11.2026</td><td>ISU GP saatva Skate America 2026</td></tr></table>';
+      if (url.endsWith('isufs_cr_00100000.htm')) body = '<table><tr><th>Competition Results</th></tr><tr><td>ISU Grand Prix</td></tr><tr><td></td><td>ISU GP saatva Skate America 2026</td><td>Women</td><td>1</td><td></td><td>JPN</td></tr></table>';
+      return {status:200,ok:true,url,text:async()=>body};
     }});
     await service.sync();const good=await service.read();assert.equal(good.events[0].podium.length,3);assert.equal(good.syncState,'ok');assert.equal(good.events[0].podium[0].score,219.74);
-    fail=true;await service.sync();const cached=await service.read();assert.equal(cached.syncState,'unavailable');assert.deepEqual(cached.events[0].podium,good.events[0].podium);assert.equal(cached.syncedAt,good.syncedAt);
+    const ami = good.athletes.find(a=>a.id==='ami-nakai');
+    assert.equal(ami.personalBest.score,236.81);
+    assert.ok(ami.careerMedals.some(m=>/Skate America 2026/.test(m.event)&&m.rank===1));
+    fail=true;await service.sync();const cached=await service.read();assert.equal(cached.syncState,'unavailable');assert.deepEqual(cached.events[0].podium,good.events[0].podium);assert.equal(cached.syncedAt,good.syncedAt);assert.deepEqual(cached.athletes.find(a=>a.id===ami.id).personalBest,ami.personalBest);
   }finally{
     service?.stop();assert.match(name,/^ice_atlas_test_\d+_\d+_season$/);await client.db(name).dropDatabase();await client.close();await stop();
   }

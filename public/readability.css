@@ -4,3 +4,8 @@
 
 /* 个人最佳总分沿用正文的正常字体。 */
 .profile-best>strong{font-family:inherit;font-weight:600;font-variant-numeric:tabular-nums}
+/* 页头品牌与当前专题共用同一组文字层级。 */
+.brand-name{line-height:1.15}
+.brand-en{line-height:1.2}
+.brand-edition{display:block;margin-top:5px;color:#456e89;font-size:13px;font-weight:600;line-height:1.2;letter-spacing:1.5px}
+@media(max-width:760px){.brand-edition{margin-top:4px;font-size:12px}}

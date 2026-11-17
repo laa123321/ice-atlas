@@ -61,5 +61,19 @@
     "photoCredit": "Jurij Kodrun / ISU / Getty Images（图集发布者：星星里的棒棒糖）",
     "photoKind": "women-podium",
     "photoVerifiedAt": "2026-11-05"
+  },
+  "gpchn2026": {
+    "photo": "assets/events/gpchn2026.jpg",
+    "photoSource": "https://www.essentiallysports.com/olympics-news-figure-skating-olympian-battles-through-crowd-abuse-to-claim-gold-medal-at-recent-event/",
+    "photoCredit": "吴鲁 / 新华社 / IMAGO（图集来源：EssentiallySports）",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-09"
+  },
+  "gpusa2026": {
+    "photo": "assets/events/gpusa2026.jpg",
+    "photoSource": "https://www.nikkansports.com/sports/figure/news/202611160000291.html",
+    "photoCredit": "泉光太郎 / 日刊体育",
+    "photoKind": "women-podium",
+    "photoVerifiedAt": "2026-11-16"
   }
 }

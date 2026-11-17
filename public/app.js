@@ -115,14 +115,15 @@ dialog.addEventListener('keydown', (event) => {
 dialog.addEventListener('click', (event) => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
 dialog.addEventListener('close', () => { document.body.classList.remove('modal-open'); hoveredCard=-1;slideHoldUntil[dialogEdition]=0;syncTimer(); });
 
+const siteTitle = '冰上图鉴 · 女单篇 | ICE ATLAS';
 const pages = {
-  '/basics': ['花样滑冰基础知识科普', 'THE BASICS OF FIGURE SKATING', '01'],
-  '/rankings': ['世界积分榜排名', 'WORLD STANDINGS', '02'],
-  '/events': ['本赛季国际赛事', 'THE INTERNATIONAL SEASON', '03'],
-  '/athlete': ['选手简介', 'ATHLETE PROFILE', '04'],
-  '/skaters': ['女子单人滑选手图鉴', 'WOMEN’S SKATER ATLAS', '04'],
-  '/forum': ['论坛', 'THE ICE COMMUNITY', '06'],
-  '/sources': ['图片来源', 'PHOTOGRAPHY & CREDITS', '07']
+  '/basics': ['花样滑冰基础知识科普', 'THE BASICS OF FIGURE SKATING'],
+  '/rankings': ['世界积分榜排名', 'WORLD STANDINGS'],
+  '/events': ['本赛季国际赛事', 'THE INTERNATIONAL SEASON'],
+  '/athlete': ['选手简介', 'ATHLETE PROFILE'],
+  '/skaters': ['女子单人滑选手图鉴', 'WOMEN’S SKATER ATLAS'],
+  '/forum': ['论坛', 'THE ICE COMMUNITY'],
+  '/sources': ['图片来源', 'PHOTOGRAPHY & CREDITS']
 };
 const blankCanvas = document.querySelector('.blank-canvas');
 const blankMarkup = blankCanvas.innerHTML;
@@ -153,11 +154,11 @@ function renderRoute() {
     else link.removeAttribute('aria-current');
   });
   if (pages[route]) {
-    const [title, eyebrow, number] = pages[route];
+    const [title, eyebrow] = pages[route];
     document.querySelector('#section-title').textContent = title;
     document.querySelector('#breadcrumb-label').textContent = title;
     document.querySelector('#section-eyebrow').textContent = eyebrow;
-    document.querySelector('.section-number').textContent = number + ' / ICE ATLAS';
+    document.querySelector('.section-season').hidden = true;
     document.querySelector('#forum-notice').hidden = route !== '/forum';
     blankCanvas.className = route === '/sources' ? 'source-list' : 'blank-canvas';
     blankCanvas.innerHTML = route === '/sources' ? `<p>本站为课程项目，图片用于页面设计展示，版权归原摄影者及权利人所有。以下保留原始报道与署名信息。</p><ul><li>首页合照：<a href="https://www.isu-skating.com/en/news/kaori-sakamoto-bids-golden-farewell-with-fourth-isu-world-title-in-prague/" target="_blank" rel="noopener noreferrer">2026 ISU 世界花样滑冰锦标赛女子领奖台</a> · ISU / Getty Images</li>${editions.map(edition => `<li>${edition.title}<ul>${edition.photos.map(photo => `<li><a href="${photo.source}" target="_blank" rel="noopener noreferrer">${photo.caption}</a> · ${photo.credit}</li>`).join('')}</ul></li>`).join('')}</ul>` : blankMarkup;
@@ -169,7 +170,7 @@ function renderRoute() {
     });
     blankCanvas.setAttribute('aria-label', route === '/sources' ? '图片来源与署名' : route === '/basics' ? '花样滑冰科普内容' : route === '/rankings' ? 'ISU 女单世界积分榜' : route === '/events' ? '本赛季赛事与官方赛果' : ['/skaters','/athlete'].includes(route) ? '选手资料与成绩' : '栏目内容预留区域');
     if(route==='/sources')blankCanvas.insertAdjacentHTML('beforeend',`<h2>科普图示与选手照片</h2><p>旋转姿态图片提取自 ${learnSource(LEARN_SOURCES.handbook+'#page=25','ISU 单人滑技术手册 2026/27 第25–26页')}。跳跃及步法 SVG 是本站依据 ISU 定义绘制的结构示意，非 ISU 原图。</p><p>选手照片来自对应的 ISU 官方档案，每位选手简介页照片下方均有来源链接。原始照片保存在本站素材目录，版权归原权利人所有。</p>`);
-    document.title = `${title} · 冰上图鉴`;
+    document.title = `${title} · ${siteTitle}`;
     if (route === '/basics') renderLearn(raw);
     if (route === '/forum') renderForum(raw);
     if (['/events','/skaters','/athlete'].includes(route)) renderSeasonPage(route,raw);
@@ -197,8 +198,8 @@ function renderRoute() {
       tab.href = `#/${mode}${next === 'forum' ? '?next=forum' : ''}`;
       if (route === `/${mode}`) tab.setAttribute('aria-current', 'page'); else tab.removeAttribute('aria-current');
     });
-    document.title = `${register ? '注册' : '登录'} · 冰上图鉴`;
-  } else document.title = '冰上图鉴 ICE ATLAS · 女子单人花样滑冰';
+    document.title = `${register ? '注册' : '登录'} · ${siteTitle}`;
+  } else document.title = siteTitle;
   updateAuthUI();
   window.scrollTo(0, 0);
   syncTimer();

@@ -5,7 +5,6 @@ body.learn-index-page { background: #f7f9fb; }
 .learn-index-page #section-eyebrow { margin-bottom: 8px; color: #52697c; }
 .learn-index-page .page-title-row { padding-bottom: 0; border: 0; gap: 20px; align-items: baseline; }
 .learn-index-page #section-title { color: #20394f; font-size: 34px; line-height: 1.45; letter-spacing: 0; }
-.learn-index-page .section-number { color: #52697c; font-size: 13px; white-space: nowrap; }
 .learn-index-page .learn-content { padding-top: 10px; }
 .learn-index-page .learn-index-intro { margin-bottom: 24px; }
 .learn-index-page .learn-index-intro p { display: flex; flex-wrap: wrap; gap: 2px 14px; margin: 0; font-size: 15px; line-height: 1.8; color: #52697c; }
@@ -47,7 +46,6 @@ body.learn-index-page { background: #f7f9fb; }
   .learn-index-page #section-eyebrow { font-size: 11px !important; letter-spacing: 1.1px !important; }
   .learn-index-page .page-title-row { align-items: flex-start; }
   .learn-index-page #section-title { font-size: 27px; line-height: 1.5; }
-  .learn-index-page .section-number { display: none; }
   .learn-index-page .learn-index-intro { margin-bottom: 20px; }
   .learn-index-page .learn-index-intro p { display: block; font-size: 14px; }
   .learn-index-page .learn-index-intro strong { display: block; margin-bottom: 3px; font-size: 16px; }
