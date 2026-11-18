@@ -47,3 +47,10 @@ body.rankings-compact-page{background:#f8fafc}
 @media(max-width:1100px){.rankings-compact-page .ranking-controls{flex-basis:100%}.rankings-compact-page .standings-toolbar{gap:12px}.rankings-compact-page .ranking-sync{justify-content:flex-start}}
 @media(max-width:760px){.rankings-compact-page #section-title{font-size:27px}.rankings-compact-page .section-season{font-size:12px;white-space:nowrap}.rankings-compact-page .standings-toolbar{padding:14px 0}.rankings-compact-page .ranking-controls .search-label{min-width:100%;flex-basis:100%}.rankings-compact-page .ranking-sync{flex-direction:row;align-items:center;padding:12px}.rankings-compact-page .ranking-sync>div{gap:6px;flex-basis:100%}.rankings-compact-page .ranking-sync button{width:auto;margin-left:auto}.rankings-compact-page .ranking-table th,.rankings-compact-page .ranking-table td{padding:12px 16px}.rankings-compact-page .ranking-table tbody tr{height:66px}}
 .rankings-compact-page .search-icon,.atlas-directory-page .search-icon{flex-shrink:0;color:#617b8e}
+
+/* Preserve the standings panel's height while a new group loads. */
+#ranking-panel{position:relative;overflow-anchor:none}
+#athlete-panel{overflow-anchor:none}
+.ranking-panel-content[aria-busy="true"]{visibility:hidden}
+.ranking-panel-content[aria-busy="true"]:empty{min-height:120px}
+.ranking-load-status{position:absolute;inset:0 0 auto}

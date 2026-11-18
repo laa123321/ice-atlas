@@ -31,7 +31,11 @@ function renderSeasonPage(route,raw) {
   blankCanvas.className='season-content';
   if (!seasonSnapshot) {
     blankCanvas.innerHTML='<div class="content-loading" role="status">正在读取本赛季赛事与选手资料…</div>';
-    loadSeason().then(()=>{if(currentRoute===route) renderRoute();}).catch(()=>{
+    loadSeason().then(()=>{
+      if(currentRoute!==route)return;
+      if(route==='/skaters')renderSeasonPage(route,location.hash.slice(1));
+      else renderRoute();
+    }).catch(()=>{
       if(currentRoute!==route)return;
       blankCanvas.innerHTML='<div class="content-loading"><p>暂时无法读取数据，请确认 Node.js 服务已重新启动。</p><button id="retry-season" class="small-button" type="button">重新读取</button></div>';
       document.querySelector('#retry-season').addEventListener('click',()=>renderSeasonPage(route,location.hash.slice(1)));
@@ -72,29 +76,42 @@ function eventMonths(events) {
   for(const event of events){const key=event.start.slice(0,7);if(!months.has(key))months.set(key,[]);months.get(key).push(event);}
   return [...months].map(([key,items])=>{const [year,month]=key.split('-');return `<section class="calendar-month" aria-labelledby="month-${key}"><div class="calendar-month-heading"><h3 id="month-${key}"><strong>${Number(month)} 月</strong><span>${year}</span></h3><span>${items.length} 场赛事</span></div><div class="calendar-month-events">${items.map(eventCard).join('')}</div></section>`;}).join('');
 }
-function renderEvents(raw) {
+function renderEvents(raw, reuseControls = false) {
   const params=new URLSearchParams(raw.split('?')[1]||'');
   const group=['senior','junior'].includes(params.get('group'))?params.get('group'):'all';
   const filter=['upcoming','finished','ongoing'].includes(params.get('status'))?params.get('status'):'all';
   const day=currentCalendarDay();
   const events=seasonSnapshot.events.filter(e=>(group==='all'||e.group===group)&&(filter==='all'||(filter==='finished'?['finished','pending'].includes(eventStatus(e,day)):eventStatus(e,day)===filter))).sort((a,b)=>a.start.localeCompare(b.start)||a.group.localeCompare(b.group));
-  const next=selectFeaturedEvent(seasonSnapshot.events,day);
-  const updated=seasonSnapshot.syncedAt?new Date(seasonSnapshot.syncedAt).toLocaleString('zh-CN',{timeZone:'Asia/Singapore',hour12:false}):`${seasonSnapshot.seedVerifiedAt} 人工核对快照`;
-  blankCanvas.innerHTML=`${nextEventPreview(next,day)}<div class="calendar-list-heading"><div><p class="calendar-kicker">${seasonSnapshot.season} / SEASON CALENDAR</p><h2>赛事日历</h2></div><span>${seasonSnapshot.events.length} 场已收录赛事</span></div><div class="season-controls"><div class="segmented-control" aria-label="赛事组别">${[['all','全部组别'],['senior','成年组'],['junior','青年组']].map(([v,n])=>`<a href="#/events?group=${v}&status=${filter}" ${group===v?'aria-current="page"':''}>${n}</a>`).join('')}</div><label class="select-label">赛事状态<select id="event-status"><option value="all">全部状态</option><option value="upcoming">未开始</option><option value="ongoing">进行中</option><option value="finished">已结束</option></select></label><button id="refresh-season" class="small-button" type="button">刷新页面数据 ↻</button></div><div class="sync-line"><span>最近同步：${escapeText(updated)}（UTC+8）${seasonSnapshot.syncing?' · 正在同步':''}</span></div><div class="event-list">${eventMonths(events)}</div><p class="learn-smallprint">日期状态按 UTC+8 更新；赛事日期含官方成绩页所列活动日。未开放成绩页的赛程采用 ISU 已公布安排，后续以官方公告为准。点击前三名姓名可查看选手简介。</p>`;
-  const select=document.querySelector('#event-status');select.value=filter;select.addEventListener('change',()=>{location.hash=`/events?group=${group}&status=${select.value}`;});
-  document.querySelector('#refresh-season').addEventListener('click',async event=>{
-    const button=event.currentTarget;button.disabled=true;button.textContent='正在读取…';
-    try{await loadSeason(true);if(currentRoute==='/events')renderEvents(location.hash.slice(1));}
-    catch{button.disabled=false;button.textContent='重新读取';showNotice('暂时无法读取，已保留当前数据。',true);}
+  let controls=blankCanvas.querySelector('.season-controls');
+  if(!reuseControls || !controls){
+    const next=selectFeaturedEvent(seasonSnapshot.events,day);
+    const updated=seasonSnapshot.syncedAt?new Date(seasonSnapshot.syncedAt).toLocaleString('zh-CN',{timeZone:'Asia/Singapore',hour12:false}):`${seasonSnapshot.seedVerifiedAt} 人工核对快照`;
+    blankCanvas.innerHTML=`${nextEventPreview(next,day)}<div class="calendar-list-heading"><div><p class="calendar-kicker">${seasonSnapshot.season} / SEASON CALENDAR</p><h2>赛事日历</h2></div><span>${seasonSnapshot.events.length} 场已收录赛事</span></div><div class="season-controls"><div class="segmented-control" aria-label="赛事组别">${[['all','全部组别'],['senior','成年组'],['junior','青年组']].map(([v,n])=>`<a data-group="${v}" href="#/events?group=${v}&status=${filter}">${n}</a>`).join('')}</div><label class="select-label">赛事状态<select id="event-status"><option value="all">全部状态</option><option value="upcoming">未开始</option><option value="ongoing">进行中</option><option value="finished">已结束</option></select></label><button id="refresh-season" class="small-button" type="button">刷新页面数据 ↻</button></div><div class="sync-line"><span>最近同步：${escapeText(updated)}（UTC+8）${seasonSnapshot.syncing?' · 正在同步':''}</span></div><div class="event-list"></div><p class="learn-smallprint">日期状态按 UTC+8 更新；赛事日期含官方成绩页所列活动日。未开放成绩页的赛程采用 ISU 已公布安排，后续以官方公告为准。点击前三名姓名可查看选手简介。</p>`;
+    document.querySelector('#refresh-season').addEventListener('click',async event=>{
+      const button=event.currentTarget;button.disabled=true;button.textContent='正在读取…';
+      try{await loadSeason(true);if(currentRoute==='/events')renderEvents(location.hash.slice(1));}
+      catch{button.disabled=false;button.textContent='重新读取';showNotice('暂时无法读取，已保留当前数据。',true);}
+    });
+    document.querySelector('#next-event-link')?.addEventListener('click',event=>{
+      event.preventDefault();
+      const target=document.getElementById(`event-${next.id}`);
+      if(target)target.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+      else location.hash=`/events?event=${encodeURIComponent(next.id)}`;
+    });
+    controls=blankCanvas.querySelector('.season-controls');
+  }
+  controls.querySelectorAll('.segmented-control a').forEach(link=>{
+    const value=link.dataset.group;
+    link.href='#/events?group='+value+'&status='+filter;
+    if(value===group)link.setAttribute('aria-current','page');
+    else link.removeAttribute('aria-current');
   });
-  document.querySelector('#next-event-link')?.addEventListener('click',event=>{
-    event.preventDefault();
-    const target=document.getElementById(`event-${next.id}`);
-    if(target)target.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
-    else location.hash=`/events?event=${encodeURIComponent(next.id)}`;
-  });
+  const select=controls.querySelector('#event-status');
+  select.value=filter;
+  select.onchange=()=>{location.hash='/events?group='+group+'&status='+select.value;};
+  blankCanvas.querySelector('.event-list').innerHTML=eventMonths(events);
   const selected=params.get('event');
-  if(selected&&events.some(e=>e.id===selected))requestAnimationFrame(()=>document.getElementById(`event-${selected}`)?.scrollIntoView({block:'start'}));
+  if(selected&&events.some(e=>e.id===selected))requestAnimationFrame(()=>{if(location.hash.slice(1)===raw)document.getElementById(`event-${selected}`)?.scrollIntoView({block:'start'});});
 }
 function eventCard(event) {
   const status=eventStatus(event);
@@ -107,10 +124,15 @@ function renderAthleteDirectory(route,raw) {
   const group=params.get('group')==='junior'?'junior':'senior';
   const athletes=seasonSnapshot.athletes.filter(a=>a.groups.includes(group));
   const countries=[...new Set(athletes.map(a=>directoryCountry(a.country)))].sort((a,b)=>countryName(a).localeCompare(countryName(b),'zh-CN'));
-  const tabs=`<div class="ranking-tabs athlete-tabs" role="tablist" aria-label="选手组别">${[['senior','成年组','SENIOR WOMEN'],['junior','青年组','JUNIOR WOMEN']].map(([id,label,en])=>`<a id="athlete-tab-${id}" role="tab" href="#/skaters?group=${id}" aria-selected="${id===group}" aria-controls="athlete-panel" tabindex="${id===group?0:-1}">${label}<span>${en}</span></a>`).join('')}</div>`;
-  blankCanvas.innerHTML=`<p class="directory-description">收录获奖选手及本赛季有 ISU 参赛记录的中立女单。</p><div class="directory-toolbar">${tabs}<div class="athlete-controls"><label class="search-label"><svg class="search-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input aria-label="查找选手" id="athlete-search" type="search" placeholder="输入姓名、花名或国家 / 地区" maxlength="80"></label><label class="select-label">国家 / 地区<select id="athlete-country"><option value="all">全部</option>${countries.map(c=>`<option value="${escapeText(c)}">${escapeText(countryName(c))}</option>`).join('')}</select></label><span id="athlete-count" role="status"></span></div></div><div id="athlete-panel" role="tabpanel" aria-labelledby="athlete-tab-${group}"><div id="athlete-grid" class="athlete-grid"></div></div>`;
+  if (!blankCanvas.querySelector('#athlete-panel')) {
+    const tabs=`<div class="ranking-tabs athlete-tabs" role="tablist" aria-label="选手组别">${[['senior','成年组','SENIOR WOMEN'],['junior','青年组','JUNIOR WOMEN']].map(([id,label,en])=>`<a id="athlete-tab-${id}" role="tab" href="#/skaters?group=${id}" aria-selected="${id===group}" aria-controls="athlete-panel" tabindex="${id===group?0:-1}">${label}<span>${en}</span></a>`).join('')}</div>`;
+    blankCanvas.innerHTML=`<p class="directory-description">收录获奖选手及本赛季有 ISU 参赛记录的中立女单。</p><div class="directory-toolbar">${tabs}<div class="athlete-controls"><label class="search-label"><svg class="search-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input aria-label="查找选手" id="athlete-search" type="search" placeholder="输入姓名、花名或国家 / 地区" maxlength="80"></label><label class="select-label">国家 / 地区<select id="athlete-country"><option value="all">全部</option></select></label><span id="athlete-count" role="status"></span></div></div><div id="athlete-panel" role="tabpanel" aria-labelledby="athlete-tab-${group}"><div id="athlete-grid" class="athlete-grid"></div></div>`;
+    bindGroupTabs(blankCanvas.querySelector('.athlete-tabs'));
+  }
+  selectGroupTab(blankCanvas.querySelector('.athlete-tabs'), blankCanvas.querySelector('#athlete-panel'), group);
   const input=document.querySelector('#athlete-search');input.value=params.get('q')||'';
   const select=document.querySelector('#athlete-country');
+  select.replaceChildren(new Option('全部','all'), ...countries.map(code=>new Option(countryName(code),code)));
   const requestedCountry=directoryCountry(params.get('country'));
   select.value=countries.includes(requestedCountry)?requestedCountry:'all';
   function update() {
@@ -123,14 +145,9 @@ function renderAthleteDirectory(route,raw) {
     const query=new URLSearchParams({group});if(q)query.set('q',input.value.trim());if(select.value!=='all')query.set('country',select.value);
     history.replaceState(null,'',`#${route}${query.size?'?'+query:''}`);
   }
-  blankCanvas.querySelectorAll('[role="tab"]').forEach(tab=>tab.addEventListener('keydown',event=>{
-    if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
-    event.preventDefault();
-    const target=event.key==='Home'?'senior':event.key==='End'?'junior':group==='junior'?'senior':'junior';
-    location.hash=`/skaters?group=${target}`;
-    requestAnimationFrame(()=>document.querySelector('#athlete-tab-'+target)?.focus());
-  }));
-  input.addEventListener('input',update);select.addEventListener('change',update);update();
+  input.oninput=update;
+  select.onchange=update;
+  update();
 }
 function renderCareerMedals(athlete) {
   const medals=athlete.careerMedals||[];

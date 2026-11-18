@@ -26,9 +26,106 @@ body.forum-page{background:#f8fafc}
 .forum-form input{height:auto;font-size:15px}.forum-form select,.forum-form textarea{font-family:inherit;font-size:15px;line-height:1.7}
 .forum-form textarea{resize:vertical;min-height:100px}.forum-form textarea[readonly]{background:#f5f8fa;cursor:pointer}
 .forum-form input:focus,.forum-form textarea:focus,.forum-form select:focus{outline:2px solid #92b9d0;outline-offset:2px}
+.forum-compose-fields{border:0;padding:0;margin:0;min-inline-size:0}
+.forum-draft-prompt{padding:12px 14px;border:1px solid #d8e3eb;border-radius:4px;background:#edf5fa;color:#34556c;font-size:14px}
+.forum-draft-prompt p{margin:0 0 6px}
+.forum-draft-prompt button{border:0;background:none;color:#286b96;padding:4px 12px 4px 0;text-decoration:underline;text-underline-offset:3px;font:inherit;cursor:pointer}
+.forum-draft-status{margin:10px 0 0;color:#52697c;font-size:13px}
+.forum-draft-status[data-state="error"]{color:#a24545}
 .forum-feedback{color:#a24545;font-size:14px;line-height:1.7;min-height:0;margin:10px 0}
 .forum-form-actions{display:flex;justify-content:flex-end;align-items:center;gap:22px;margin-top:20px}.forum-form-actions a{font-size:14px;color:#617b8e}
 .forum-article{padding:26px 28px;background:#fff;border:1px solid #d8e3eb;border-radius:6px}
+.forum-article-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.forum-article-heading h2{min-width:0}
+.forum-post-menu {
+  position: relative;
+  flex: none;
+  color: #345d77;
+}
+.forum-post-menu summary {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 23px;
+  line-height: 1;
+}
+.forum-post-menu summary::-webkit-details-marker { display: none; }
+.forum-post-menu summary:hover, .forum-post-menu[open] summary { background: #edf5fa; }
+.forum-post-menu summary:focus-visible { outline: 2px solid #7cb3d3; outline-offset: 2px; }
+.forum-post-menu:not([open]) .forum-post-popover { display: none; }
+.forum-post-popover {
+  position: absolute;
+  z-index: 2;
+  inset-inline-end: 0;
+  inset-block-start: calc(100% + 5px);
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #d8e3eb;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px #173b5818;
+}
+.forum-post-popover button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 6px 13px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #79464a;
+  font-size: 14px;
+}
+.forum-post-popover button:hover { background: #f4f7fa; }
+.forum-delete-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(420px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  overflow: auto;
+  padding: clamp(18px, 5vw, 28px);
+  border: 1px solid #d8e3eb;
+  border-radius: 12px;
+  background: #fff;
+  color: #20394f;
+  box-shadow: 0 16px 48px #173b5829;
+}
+.forum-delete-dialog::backdrop { background: #162d465c; backdrop-filter: none; }
+body:has(.forum-delete-dialog[open]) { overflow: hidden; }
+dialog.forum-delete-dialog h2 { margin: 0 0 10px; font-size: 21px; }
+#forum-delete-description { margin: 0; font-size: 15px; color: #52697c; }
+.forum-delete-feedback:empty { margin: 0; }
+.forum-delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.forum-delete-actions button {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid #d8e3eb;
+  border-radius: 6px;
+  color: #34556c;
+  background: #f4f8fb;
+  font-size: 14px;
+}
+.forum-delete-actions button:hover:not(:disabled) { background: #e7eff6; }
+.forum-delete-actions [data-delete-confirm] { border-color: #8b5054; background: #8b5054; color: #fff; }
+.forum-delete-actions [data-delete-confirm]:hover:not(:disabled) { background: #753f43; }
+.forum-delete-actions button:disabled { opacity: .65; cursor: wait; }
+@media (max-width: 760px) {
+  .forum-post-menu summary { width: 44px; height: 44px; }
+  .forum-post-popover button { min-height: 44px; }
+}
 .forum-article h2{font-size:27px;line-height:1.5;overflow-wrap:anywhere;margin:0 0 12px;font-weight:600}
 .forum-body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:16px;line-height:1.95;color:#34556c;margin:22px 0 0}
 .forum-comments{margin-top:32px}.forum-comments>h2{font-size:22px;font-weight:600;margin:0 0 15px}.forum-comments>h2 span{font-size:15px;color:#617b8e;margin-left:10px}

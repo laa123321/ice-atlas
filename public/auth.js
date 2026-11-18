@@ -37,7 +37,10 @@ function updateAuthUI() {
 async function refreshAuth() {
   const previousId=authUser?.id;
   try { authUser = (await apiRequest('/api/auth/me')).user; }
-  catch { authUser = null; }
+  catch (error) {
+    // A failed network check does not end a previously verified session.
+    if (error.status === 401 || error.status === 403) authUser = null;
+  }
   finally { authChecking = false; updateAuthUI();if(previousId!==authUser?.id&&currentRoute==='/forum')renderForum(location.hash.slice(1)); }
 }
 

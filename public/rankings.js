@@ -1,3 +1,4 @@
+let rankingRenderVersion=0;
 const rankingCache={};
 const rankingRequests={};
 const rankingFilters={senior:{q:'',country:'all',page:1},junior:{q:'',country:'all',page:1}};
@@ -13,17 +14,48 @@ async function loadRankings(group,force=false){
 function renderRankings(raw){
  const group=new URLSearchParams(raw.split('?')[1]||'').get('group')==='junior'?'junior':'senior';const junior=group==='junior';const data=rankingCache[group];
  blankCanvas.className='rankings-content';blankCanvas.setAttribute('aria-label','ISU 女单世界积分榜');
- blankCanvas.innerHTML=`<div class="ranking-tabs" role="tablist" aria-label="排名组别">${[['senior','成年女单','WOMEN OVERALL'],['junior','青年女单','JUNIOR WOMEN']].map(([id,name,en])=>`<a id="ranking-${id}" role="tab" href="#/rankings?group=${id}" aria-selected="${id===group}" aria-controls="ranking-panel" tabindex="${id===group?'0':'-1'}">${name}<span>${en}</span></a>`).join('')}</div><div id="ranking-panel" role="tabpanel" aria-labelledby="ranking-${group}"><div class="ranking-heading"><div><p class="eyebrow">ISU WORLD STANDINGS${data?.season?' / '+escapeText(data.season):''}</p><h2>${junior?'青年女单':'成年女单'}世界积分榜</h2><p>${junior?'直接采用 ISU Junior Women 榜单，保留官方名次与积分。':'对应 ISU Women 总榜，包含成年、青年赛事积分，不按本站运动员名册重新筛选。'}</p></div><a href="https://results.isu.org/ws/ws/${junior?'wsjuniorwomen':'wswomen'}.htm" target="_blank" rel="noopener noreferrer">查看 ISU 官方榜单 ↗</a></div>${data?`<div class="ranking-sync"><div><p><span>官方榜单更新</span><strong>${rankTime(data.officialUpdatedAt)}</strong></p><p><span>本站最近同步</span><strong>${rankTime(data.syncedAt)}</strong></p><small>时间均为 UTC+8 · 网站运行时每小时检查 ISU</small></div><button class="small-button" id="sync-rankings" type="button">立即与 ISU 同步 ↻</button></div>${data.syncState==='unavailable'?'<p class="sync-note" role="status">本次暂未读取到官方榜单，正在显示上次成功同步的数据。</p>':''}<div class="ranking-controls"><label class="search-label"><svg class="search-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input aria-label="查找选手" id="ranking-search" type="search" maxlength="80" placeholder="输入姓名或国家 / 地区"></label><label class="select-label">国家 / 地区<select id="ranking-country"><option value="all">全部</option>${[...new Set(data.rows.map(r=>r.country))].sort().map(code=>`<option value="${escapeText(code)}">${escapeText(countryName(code))} · ${escapeText(code)}</option>`).join('')}</select></label><span id="ranking-count" role="status" hidden></span></div><div class="ranking-table-wrap"><table class="ranking-table"><thead><tr><th scope="col">名次</th><th scope="col">选手</th><th scope="col">国家 / 地区</th><th scope="col">世界积分</th></tr></thead><tbody id="ranking-rows"></tbody></table></div><div class="ranking-pagination"><span id="ranking-range" role="status"></span><div><button class="small-button" id="ranking-prev" type="button">← 上一页</button><button class="small-button" id="ranking-next" type="button">下一页 →</button></div></div>`:'<div class="content-loading" role="status">正在读取 ISU 积分榜…</div>'}</div>`;
- blankCanvas.querySelectorAll('[role="tab"]').forEach(tab=>tab.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const target=event.key==='Home'?'senior':event.key==='End'?'junior':junior?'senior':'junior';location.hash=`/rankings?group=${target}`;requestAnimationFrame(()=>document.querySelector('#ranking-'+target)?.focus());}}));
- if(!data){loadRankings(group).then(()=>{if(currentRoute==='/rankings'&&rankingGroup()===group)renderRankings(location.hash.slice(1));}).catch(()=>{if(currentRoute==='/rankings'&&rankingGroup()===group){document.querySelector('#ranking-panel').insertAdjacentHTML('beforeend','<p class="sync-note">读取失败，请确认 Node.js 已重新启动。</p><button id="retry-rankings" class="small-button">重新读取</button>');document.querySelector('.content-loading')?.remove();document.querySelector('#retry-rankings').addEventListener('click',()=>renderRankings(location.hash.slice(1)));}});return;}
- const toolbar=document.createElement('div');toolbar.className='standings-toolbar';
- const tabs=blankCanvas.querySelector('.ranking-tabs');tabs.before(toolbar);toolbar.append(tabs,blankCanvas.querySelector('.ranking-controls'));
- const heading=blankCanvas.querySelector('.ranking-heading');const source=heading.querySelector('a');const sync=blankCanvas.querySelector('.ranking-sync');
- sync.insertBefore(source,sync.querySelector('button'));heading.remove();sync.querySelector('small')?.remove();
+ const version=++rankingRenderVersion;
+ if(!blankCanvas.querySelector('#ranking-panel')){
+  blankCanvas.innerHTML=`<div class="standings-toolbar"><div class="ranking-tabs" role="tablist" aria-label="排名组别">${[['senior','成年女单','WOMEN OVERALL'],['junior','青年女单','JUNIOR WOMEN']].map(([id,name,en])=>`<a id="ranking-${id}" role="tab" href="#/rankings?group=${id}" aria-selected="${id===group}" aria-controls="ranking-panel" tabindex="${id===group?'0':'-1'}">${name}<span>${en}</span></a>`).join('')}</div><div class="ranking-controls"><label class="search-label"><svg class="search-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input aria-label="查找选手" id="ranking-search" type="search" maxlength="80" placeholder="输入姓名或国家 / 地区"></label><label class="select-label">国家 / 地区<select id="ranking-country"><option value="all">全部</option></select></label><span id="ranking-count" role="status" hidden></span></div></div><div id="ranking-panel" role="tabpanel"><div class="ranking-panel-content"></div><div class="ranking-load-status content-loading" role="status" hidden><span></span> <button type="button" class="small-button" hidden>重新读取</button></div></div>`;
+  bindGroupTabs(blankCanvas.querySelector('.ranking-tabs'));
+ }
+ const panel=blankCanvas.querySelector('#ranking-panel');
+ selectGroupTab(blankCanvas.querySelector('.ranking-tabs'),panel,group);
+ const content=panel.querySelector('.ranking-panel-content');
+ const status=panel.querySelector('.ranking-load-status');
+ const controls=blankCanvas.querySelector('.ranking-controls');
+ const input=controls.querySelector('#ranking-search'),select=controls.querySelector('#ranking-country');
+ const filter=rankingFilters[group];
+ input.value=filter.q;
+ input.disabled=select.disabled=!data;
+ if(!data){
+  select.value='all';
+  content.setAttribute('aria-busy','true');
+  status.hidden=false;
+  status.querySelector('span').textContent='正在读取 ISU 积分榜…';
+  const retry=status.querySelector('button');
+  retry.hidden=true;
+  retry.onclick=()=>renderRankings(location.hash.slice(1));
+  loadRankings(group).then(()=>{
+   if(version===rankingRenderVersion&&currentRoute==='/rankings'&&rankingGroup()===group)renderRankings(location.hash.slice(1));
+  }).catch(()=>{
+   if(version!==rankingRenderVersion||currentRoute!=='/rankings'||rankingGroup()!==group)return;
+   status.querySelector('span').textContent='读取失败，请确认 Node.js 已重新启动。';
+   retry.hidden=false;
+  });
+  return;
+ }
+ content.removeAttribute('aria-busy');
+ status.hidden=true;
+ content.innerHTML=`<div class="ranking-sync"><div><p><span>官方榜单更新</span><strong>${rankTime(data.officialUpdatedAt)}</strong></p><p><span>本站最近同步</span><strong>${rankTime(data.syncedAt)}</strong></p></div><a href="https://results.isu.org/ws/ws/${junior?'wsjuniorwomen':'wswomen'}.htm" target="_blank" rel="noopener noreferrer">查看 ISU 官方榜单 ↗</a><button class="small-button" id="sync-rankings" type="button">立即与 ISU 同步 ↻</button></div>${data.syncState==='unavailable'?'<p class="sync-note" role="status">本次暂未读取到官方榜单，正在显示上次成功同步的数据。</p>':''}<div class="ranking-table-wrap"><table class="ranking-table"><thead><tr><th scope="col">名次</th><th scope="col">选手</th><th scope="col">国家 / 地区</th><th scope="col">世界积分</th></tr></thead><tbody id="ranking-rows"></tbody></table></div><div class="ranking-pagination"><span id="ranking-range" role="status"></span><div><button class="small-button" id="ranking-prev" type="button">← 上一页</button><button class="small-button" id="ranking-next" type="button">下一页 →</button></div></div>`;
+ const countries=[...new Set(data.rows.map(row=>row.country))].sort();
+ select.replaceChildren(new Option('全部','all'),...countries.map(code=>new Option(countryName(code)+' · '+code,code)));
+ if(!countries.includes(filter.country))filter.country='all';
+ select.value=filter.country;
  const seasonLabel = document.querySelector('.section-season');
  seasonLabel.textContent = data.season ? data.season.replace(/(20\d{2})\/20(\d{2})/, '$1/$2') + ' 赛季' : '';
  seasonLabel.hidden = !data.season;
- const filter=rankingFilters[group];const input=document.querySelector('#ranking-search'),select=document.querySelector('#ranking-country');input.value=filter.q;select.value=filter.country;
+
  function update(){
   const q=filter.q.trim().toLowerCase();const rows=data.rows.filter(r=>(filter.country==='all'||r.country===filter.country)&&`${r.name} ${r.country} ${countryName(r.country)}`.toLowerCase().includes(q));
   const totalPages=Math.max(1,Math.ceil(rows.length/50));filter.page=Math.min(filter.page,totalPages);const offset=(filter.page-1)*50;
@@ -32,7 +64,7 @@ function renderRankings(raw){
   document.querySelector('#ranking-range').textContent=rows.length?`第 ${filter.page} / ${totalPages} 页 · 显示 ${offset+1}–${Math.min(offset+50,rows.length)} 位`:'0 位选手';
   document.querySelector('#ranking-prev').disabled=filter.page===1;document.querySelector('#ranking-next').disabled=filter.page>=totalPages;
  }
- input.addEventListener('input',()=>{filter.q=input.value;filter.page=1;update();});select.addEventListener('change',()=>{filter.country=select.value;filter.page=1;update();});
+ input.oninput=()=>{filter.q=input.value;filter.page=1;update();};select.onchange=()=>{filter.country=select.value;filter.page=1;update();};
  document.querySelector('#ranking-prev').addEventListener('click',()=>{filter.page--;update();});document.querySelector('#ranking-next').addEventListener('click',()=>{filter.page++;update();});update();
  document.querySelector('#sync-rankings').addEventListener('click',async event=>{const button=event.currentTarget;button.disabled=true;button.textContent='正在检查 ISU…';try{const result=await apiRequest('/api/rankings/sync',{method:'POST',body:'{}'});Object.assign(rankingCache,result);if(currentRoute==='/rankings')renderRankings(location.hash.slice(1));showNotice(result[group].syncState==='ok'?'已与 ISU 官方榜单同步。':'官方榜单暂不可用，已保留上次数据。',result[group].syncState!=='ok');}catch(error){button.disabled=false;button.textContent='立即与 ISU 同步 ↻';showNotice(error.message,true);}});
 }

@@ -34,9 +34,22 @@ async function createForumRouter(db,currentUser){
  });
  router.get('/posts/:id',async(req,res)=>{
   const key=id(req.params.id);if(!key)return res.status(400).json({message:'帖子编号无效。'});
-  const post=await posts.findOne({_id:key},{projection:{authorId:0,'comments.authorId':0}});
+  const post=await posts.findOne({_id:key},{projection:{'comments.authorId':0}});
   if(!post)return res.status(404).json({message:'帖子不存在。'});
-  res.json({post:{...post,category:post.category||'自由交流',comments:post.comments||[]}});
+  const {authorId, ...publicPost} = post;
+  const user = await currentUser(req);
+  const isOwner = Boolean(user && authorId instanceof ObjectId && authorId.equals(user._id));
+  res.json({post:{...publicPost,category:post.category||'自由交流',comments:post.comments||[],isOwner}});
+ });
+ router.delete('/posts/:id', requireUser, limiter, async (req, res) => {
+  const key = id(req.params.id);
+  if (!key) return res.status(400).json({message:'帖子编号无效。'});
+  // Comments are embedded in the post, so the same write removes them.
+  const result = await posts.deleteOne({_id:key, authorId:req.forumUser._id});
+  if (result.deletedCount === 1) return res.json({deleted:true});
+  const exists = await posts.findOne({_id:key}, {projection:{_id:1}});
+  if (!exists) return res.status(404).json({message:'帖子不存在或已删除。'});
+  res.status(403).json({message:'只有帖子作者可以删除这篇讨论。'});
  });
  router.post('/posts/:id/comments',requireUser,limiter,async(req,res)=>{
   const key=id(req.params.id);if(!key)return res.status(400).json({message:'帖子编号无效。'});

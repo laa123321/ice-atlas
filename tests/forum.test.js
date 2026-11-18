@@ -1,7 +1,7 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const {once}=require('node:events');
-const {MongoClient}=require('mongodb');
+const {MongoClient,ObjectId}=require('mongodb');
 const {createApplication}=require('../src/app');
 const {ensureLocalMongo}=require('../src/local-mongo');
 const seed=require('../data/forum-seed.json');
@@ -10,7 +10,7 @@ test('论坛完整流程：真实 MongoDB、权限、评论并发与重建服务
  const uri='mongodb://127.0.0.1:27017',stop=await ensureLocalMongo(uri),client=new MongoClient(uri);
  const dbName=`ice_atlas_test_${Date.now()}_${process.pid}_forum`;let server,base,cookie='';
  const boot=async()=>{const {app}=await createApplication({client,dbName,secret:'forum-test-secret-at-least-thirty-two-characters',enableSeasonSync:false});server=app.listen(0,'127.0.0.1');await once(server,'listening');base=`http://127.0.0.1:${server.address().port}`;};
- const request=async(url,{body,guest=false}={})=>{const r=await fetch(base+url,{method:body===undefined?'GET':'POST',headers:{'Content-Type':'application/json','X-Ice-Atlas':'1',Origin:base,...(!guest&&cookie?{Cookie:cookie}:{})},body:body===undefined?undefined:JSON.stringify(body)});if(!guest&&r.headers.get('set-cookie'))cookie=r.headers.get('set-cookie').split(';')[0];return {status:r.status,data:await r.json()};};
+ const request=async(url,{body,guest=false,method=body===undefined?'GET':'POST',origin=base}={})=>{const r=await fetch(base+url,{method,headers:{'Content-Type':'application/json','X-Ice-Atlas':'1',Origin:origin,...(!guest&&cookie?{Cookie:cookie}:{})},body:body===undefined?undefined:JSON.stringify(body)});if(!guest&&r.headers.get('set-cookie'))cookie=r.headers.get('set-cookie').split(';')[0];return {status:r.status,data:await r.json()};};
  try{
   await client.connect();await boot();
   assert.equal((await request('/api/forum/posts')).data.total,seed.length);
@@ -50,7 +50,34 @@ test('论坛完整流程：真实 MongoDB、权限、评论并发与重建服务
   assert.equal(sampleAfterRestart.comments.length,seed[0].comments.length+1);
   assert.equal(sampleAfterRestart.comments.at(-1).content,'示例帖上的真实回复');
   const persisted=await request(`/api/forum/posts/${id}`,{guest:true});assert.equal(persisted.data.post.comments.length,2);assert.equal(persisted.data.post.content,text);
-  assert.equal((await request('/api/auth/me')).data.user.nickname,account.nickname);
+  const owner = (await request('/api/auth/me')).data.user;
+  assert.equal(owner.nickname,account.nickname);
+  const postUrl = '/api/forum/posts/' + id;
+  const remove = {method:'DELETE',body:{}};
+  assert.equal((await request(postUrl)).data.post.isOwner, true);
+  assert.equal((await request(postUrl,{guest:true})).data.post.isOwner, false);
+  assert.equal((await request(postUrl,{...remove,guest:true})).status, 401);
+  assert.equal((await request(postUrl,{...remove,origin:'https://example.test'})).status, 403);
+  assert.equal((await request('/api/forum/posts/not-an-id',remove)).status, 400);
+  assert.equal((await request('/api/forum/posts/'+seed[0]._id,remove)).status, 403);
+
+  const other = {...account,email:'other-forum@example.test'};
+  assert.equal((await request('/api/auth/register',{body:other})).status,201);
+  assert.equal((await request(postUrl)).data.post.isOwner, false);
+  assert.equal((await request(postUrl,{...remove,body:{authorId:owner.id}})).status, 403);
+  assert.equal((await request(postUrl)).data.post.comments.length, 2);
+  assert.equal((await request('/api/auth/login',{body:account})).status,200);
+
+  const deleted = await request(postUrl,remove);
+  assert.equal(deleted.status,200);
+  assert.deepEqual(deleted.data,{deleted:true});
+  assert.equal((await request(postUrl,remove)).status,404);
+  assert.equal((await request(postUrl,{guest:true})).status,404);
+  assert.equal(await client.db(dbName).collection('posts').findOne({_id:new ObjectId(id)}),null);
+  await new Promise(resolve=>server.close(resolve));await boot();
+  const refreshed = (await request('/api/forum/posts?category=技术分析',{guest:true})).data;
+  assert.ok(!refreshed.posts.some(post=>post._id===id));
+  assert.equal((await request('/api/forum/posts/'+seed[0]._id,{guest:true})).data.post.comments.length,sampleAfterRestart.comments.length);
  }finally{
   if(server?.listening)await new Promise(resolve=>server.close(resolve));
   assert.match(dbName,/^ice_atlas_test_\d+_\d+_forum$/);await client.db(dbName).dropDatabase();await client.close();await stop();

@@ -127,6 +127,29 @@ const pages = {
 };
 const blankCanvas = document.querySelector('.blank-canvas');
 const blankMarkup = blankCanvas.innerHTML;
+function bindGroupTabs(tablist) {
+  tablist.onkeydown = event => {
+    const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+    const index = tabs.indexOf(event.target);
+    if (index < 0) return;
+    const targets = {ArrowLeft: (index + tabs.length - 1) % tabs.length, ArrowRight: (index + 1) % tabs.length, Home: 0, End: tabs.length - 1};
+    const tab = tabs[targets[event.key]];
+    if (!tab) return;
+    event.preventDefault();
+    tab.focus({preventScroll:true});
+    tab.click();
+  };
+}
+
+function selectGroupTab(tablist, panel, group) {
+  for (const tab of tablist.querySelectorAll('[role="tab"]')) {
+    const selected = tab.hash.endsWith('=' + group);
+    tab.setAttribute('aria-selected', String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    if (selected) panel.setAttribute('aria-labelledby', tab.id);
+  }
+}
+
 function renderRoute() {
   if (dialog.open) dialog.close();
   const raw = location.hash.slice(1) || '/';
@@ -139,6 +162,19 @@ function renderRoute() {
   }
   const valid = route === '/' || route === '/login' || route === '/register' || pages[route];
   if (!valid) { location.replace('#/'); return; }
+  if (route === currentRoute && route === '/rankings') {
+    renderRankings(raw);
+    return;
+  }
+  if (route === currentRoute && route === '/skaters') {
+    renderSeasonPage(route, raw);
+    return;
+  }
+  if (route === currentRoute && route === '/events' && seasonSnapshot) {
+    renderEvents(raw, true);
+    return;
+  }
+  leaveForumCompose();
   currentRoute = route;
   document.body.classList.toggle('forum-page', route === '/forum');
   document.body.classList.toggle('rankings-compact-page', route === '/rankings');
